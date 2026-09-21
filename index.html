@@ -19,377 +19,46 @@ a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
 </style>
 </head>
 <body>
-<div class="layout">
-  <aside class="side">
-    <div class="brandrow"><div class="brand">AI Digest Archive</div><button id="themeToggle" class="themebtn" title="Переключить тему" aria-label="Переключить тему">☀️</button></div>
-    <div class="subtitle">Робототехника · LLM · AI-инструменты</div>
-    <button class="navbtn active" data-view="all">Все материалы</button>
-    <button class="navbtn" data-view="pins">★ Закрепы</button>
-    <div class="section">Темы</div>
-    <div id="topicNav"></div>
-    <div class="section">Календарь</div>
-    <div id="calendar" class="calendar"></div>
-  </aside>
-  <main class="main">
-    <div class="topbar">
-      <div id="filters" class="filters"></div>
-      <input id="search" class="search" placeholder="Поиск по архиву…" />
-    </div>
-    <div id="content"></div>
-  </main>
-</div>
-
-<div id="detailModal" class="modal" aria-hidden="true">
-  <div class="modalbox" role="dialog" aria-modal="true" aria-labelledby="detailTitle">
-    <div class="modalhead">
-      <div>
-        <h1 id="detailTitle"></h1>
-        <div id="detailMeta" class="meta"></div>
-      </div>
-      <button id="detailClose" class="closebtn">✕ Закрыть</button>
-    </div>
-    <div id="detailBody" class="detailbody"></div>
-    <div class="modalactions">
-      <button id="detailCopy" class="copybtn">⧉ Скопировать для LLM</button>
-    </div>
-    <div class="hint">Кнопка копирует контекст и вопросы в буфер обмена — можно вставить в ChatGPT, Claude, Gemini или другой чат.</div>
-  </div>
-</div>
-
+<div class="layout"><aside class="side"><div class="brandrow"><div class="brand">AI Digest Archive</div><button id="themeToggle" class="themebtn" title="Переключить тему" aria-label="Переключить тему">☀️</button></div><div class="subtitle">Робототехника · LLM · AI-инструменты</div><button class="navbtn active" data-view="all">Все материалы</button><button class="navbtn" data-view="pins">★ Закрепы</button><div class="section">Темы</div><div id="topicNav"></div><div class="section">Календарь</div><div id="calendar" class="calendar"></div></aside><main class="main"><div class="topbar"><div id="filters" class="filters"></div><input id="search" class="search" placeholder="Поиск по архиву…" /></div><div id="content"></div></main></div>
+<div id="detailModal" class="modal" aria-hidden="true"><div class="modalbox" role="dialog" aria-modal="true" aria-labelledby="detailTitle"><div class="modalhead"><div><h1 id="detailTitle"></h1><div id="detailMeta" class="meta"></div></div><button id="detailClose" class="closebtn">✕ Закрыть</button></div><div id="detailBody" class="detailbody"></div><div class="modalactions"><button id="detailCopy" class="copybtn">⧉ Скопировать для LLM</button></div><div class="hint">Кнопка копирует контекст и вопросы в буфер обмена — можно вставить в ChatGPT, Claude, Gemini или другой чат.</div></div></div>
 <script id="digest-data" type="application/json">
 [
-  {
-    "id": "2026-09-13-openai-agents-api",
-    "date": "2026-09-13",
-    "title": "OpenAI Agents API: управляемый облачный harness для долгоживущих агентов",
-    "summary": "OpenAI открыл публичную beta Agents API — инфраструктуру с orchestration, контекст-менеджментом, tools, subagents и hosted environments для длительных агентных задач.",
-    "why": "Это заметный сдвиг от «вызова модели» к готовой инфраструктуре выполнения агентов. Для production-agent систем это уменьшает объём собственной обвязки вокруг контекста, инструментов и долгих сессий.",
-    "topics": [
-      "LLM",
-      "Coding Agents",
-      "Инструменты"
-    ],
-    "relevance": "Высокая",
-    "links": [
-      {
-        "label": "OpenAI",
-        "url": "https://openai.com/index/introducing-the-agents-api/"
-      }
-    ]
-  },
-  {
-    "id": "2026-09-13-kimi-k28-preview",
-    "date": "2026-09-13",
-    "title": "Kimi Code K2.8 Preview: до 1M контекста и регулируемый thinking effort",
-    "summary": "Moonshot полностью развернул K2.8 Preview в Kimi Code. Модель доступна под прежним ID kimi-for-coding, поддерживает low/high/max thinking effort и контекст до 1M.",
-    "why": "Практически это усиливает Kimi как альтернативу для больших кодовых баз и длинных агентных сессий без обязательной миграции клиента на новый model ID.",
-    "topics": [
-      "LLM",
-      "Coding Agents"
-    ],
-    "relevance": "Высокая",
-    "links": [
-      {
-        "label": "Kimi Code docs",
-        "url": "https://www.kimi.com/code/docs/en/kimi-code/whats-new.html"
-      }
-    ]
-  },
-  {
-    "id": "2026-09-13-deepseek-v41-flash",
-    "date": "2026-09-13",
-    "title": "DeepSeek-V4.1-Flash: новая MoE-модель с мультимодальностью и сниженной стоимостью",
-    "summary": "DeepSeek представил V4.1-Flash: 552B MoE, 8B активных параметров на input и 16B на output, нативное визуальное понимание и более компактный KV cache. Модель доступна через API как deepseek-flash.",
-    "why": "Для агентных и кодовых нагрузок важны одновременно пропускная способность, стоимость cache-hit и размер KV cache. Это делает модель интересной не только по benchmark-результатам, но и по инфраструктурной экономике.",
-    "topics": [
-      "LLM",
-      "Open-weight",
-      "Coding Agents"
-    ],
-    "relevance": "Высокая",
-    "links": [
-      {
-        "label": "DeepSeek",
-        "url": "https://www.deepseek.com/en/news/deepseek-v4-1-flash/"
-      },
-      {
-        "label": "API changelog",
-        "url": "https://api-docs.deepseek.com/updates/"
-      }
-    ]
-  },
-  {
-    "id": "2026-09-14-gpt-live-1-api",
-    "date": "2026-09-14",
-    "title": "GPT-Live-1 вышел в API для full-duplex voice",
-    "summary": "OpenAI выпустил GPT-Live-1 в API. Модель умеет одновременно слушать и говорить и рассчитана на более естественные голосовые агенты с меньшей задержкой.",
-    "why": "Для voice-agent приложений это упрощает архитектуру: меньше необходимости вручную собирать отдельные ASR/TTS/turn-taking компоненты и синхронизировать их.",
-    "topics": [
-      "LLM",
-      "Инструменты"
-    ],
-    "relevance": "Высокая",
-    "links": [
-      {
-        "label": "OpenAI",
-        "url": "https://openai.com/index/introducing-gpt-live-1-in-the-api/"
-      }
-    ]
-  },
-  {
-    "id": "2026-09-14-claude-financial-advisors",
-    "date": "2026-09-14",
-    "title": "Anthropic запустил Claude for Financial Advisors",
-    "summary": "Anthropic представил специализированный продукт для финансовых консультантов с интеграциями в wealth-management и investment-платформы, включая BlackRock, Schwab и Addepar.",
-    "why": "Это хороший пример перехода LLM-продуктов от универсального чата к вертикальным workflow с доступом к отраслевым данным и инструментам.",
-    "topics": [
-      "LLM",
-      "Инструменты"
-    ],
-    "relevance": "Средняя",
-    "links": [
-      {
-        "label": "Reuters",
-        "url": "https://www.reuters.com/business/anthropic-targets-financial-advisers-with-new-claude-tool-2026-09-14/"
-      }
-    ]
-  },
-  {
-    "id": "2026-09-14-grok-build",
-    "date": "2026-09-14",
-    "title": "Grok Build продолжает быстро наращивать agentic coding-функции",
-    "summary": "В сентябрьских обновлениях Grok Build развивались subagents, MCP, worktrees, background tasks и session tooling; позже memory стала generally available.",
-    "why": "Это показывает общий тренд coding agents: конкуренция смещается от качества одной генерации к orchestration, памяти, инструментам и управлению параллельной работой.",
-    "topics": [
-      "LLM",
-      "Coding Agents",
-      "Инструменты"
-    ],
-    "relevance": "Средняя",
-    "links": [
-      {
-        "label": "xAI changelog",
-        "url": "https://x.ai/build/changelog"
-      }
-    ]
-  },
-  {
-    "id": "2026-09-15-chatgpt-work-data-agent",
-    "date": "2026-09-15",
-    "title": "Data agent в ChatGPT Work: анализ корпоративных данных через диалог",
-    "summary": "OpenAI представил Data agent в ChatGPT Work: он подключается к данным компании, исследует изменения и строит интерактивные dashboards без ручного написания запросов.",
-    "why": "Это расширяет LLM из текстового ассистента в рабочий слой поверх внутренних данных и BI-процессов, что особенно важно для аналитических и операционных workflows.",
-    "topics": [
-      "LLM",
-      "Инструменты"
-    ],
-    "relevance": "Высокая",
-    "links": [
-      {
-        "label": "OpenAI",
-        "url": "https://openai.com/index/put-data-to-work/"
-      }
-    ]
-  },
-  {
-    "id": "2026-09-15-ros2-quadruped-nav",
-    "date": "2026-09-15",
-    "title": "Open-source ROS 2 навигационный стек для квадрупеда Spot",
-    "summary": "Публикация и репозиторий описывают ROS 2 платформу для Boston Dynamics Spot с SLAM Toolbox, Nav2, Smac Hybrid-A*, MPPI, frontier exploration, Zenoh и Foxglove.",
-    "why": "Это практически полезный воспроизводимый baseline для архитектуры автономной навигации квадрупеда: mapping/localization → global planner → local controller → exploration → remote telemetry.",
-    "topics": [
-      "Робототехника",
-      "SLAM/Навигация",
-      "Квадрупеды"
-    ],
-    "relevance": "Высокая",
-    "links": [
-      {
-        "label": "Paper",
-        "url": "https://www.mdpi.com/2218-6581/15/4/70"
-      },
-      {
-        "label": "GitHub",
-        "url": "https://github.com/mil-as/quadruped_navigation_ros2"
-      }
-    ]
-  },
-  {
-    "id": "2026-09-15-wholebodywam-grounded",
-    "date": "2026-09-15",
-    "title": "WholeBodyWAM: перенос world-action priors на humanoid loco-manipulation",
-    "summary": "Работа WholeBodyWAM предлагает связывать предобученные world-action priors с whole-body control semantics, чтобы координировать визуальное предсказание, манипуляцию и движение всего тела.",
-    "why": "Это шаг от arm-centric VLA/WAM к полнотелой гуманоидной координации, где locomotion и manipulation должны планироваться совместно.",
-    "topics": [
-      "Робототехника",
-      "Гуманоиды",
-      "VLA/World Models"
-    ],
-    "relevance": "Высокая",
-    "links": [
-      {
-        "label": "arXiv",
-        "url": "https://arxiv.org/abs/2609.16644"
-      }
-    ]
-  },
-  {
-    "id": "2026-09-19-dr-mpc",
-    "date": "2026-09-19",
-    "title": "DR-MPC: ускоренный MPC для legged locomotion",
-    "summary": "DR-MPC переносит часть динамических равенств и affine input constraints в штрафы и решает box-constrained QP специализированным interior-point solver. На Unitree Go1 заявлено медианное onboard MPC-время 4.4 мс.",
-    "why": "Это релевантно низкоуровневому управлению квадрупедами: более быстрый MPC позволяет чаще пересчитывать contact-aware управление и лучше укладываться в real-time цикл.",
-    "topics": [
-      "Робототехника",
-      "Квадрупеды"
-    ],
-    "relevance": "Высокая",
-    "links": [
-      {
-        "label": "arXiv",
-        "url": "https://arxiv.org/abs/2609.20035"
-      }
-    ]
-  },
-  {
-    "id": "2026-09-19-safeharness",
-    "date": "2026-09-19",
-    "title": "SafeHarness: coding agents для робот-манипуляции с явным obstacle-aware планированием",
-    "summary": "SafeHarness добавляет к coding-agent контроллеру отдельные механизмы route planning и безопасного contact execution. В статье заявлены 71.9% task success и 87.5% collision avoidance.",
-    "why": "Работа показывает, что одной текстовой инструкции «не сталкиваться» недостаточно: safety constraint нужно превращать в явную структуру планирования и проверки.",
-    "topics": [
-      "Робототехника",
-      "VLA/World Models",
-      "Perception"
-    ],
-    "relevance": "Высокая",
-    "links": [
-      {
-        "label": "arXiv",
-        "url": "https://arxiv.org/abs/2609.20822"
-      }
-    ]
-  },
-  {
-    "id": "2026-09-19-wholebodywam-motion-priors",
-    "date": "2026-09-19",
-    "title": "WholeBodyWAM: масштабируемые motion priors для humanoid manipulation",
-    "summary": "Другая работа с названием WholeBodyWAM использует более 4 тысяч часов гетерогенных human/humanoid motion data для предобучения motion prior, который затем подключается к robot-specific action generation.",
-    "why": "Идея важна для data efficiency: вместо сбора огромного объёма траекторий на целевом роботе можно сначала обучить transferable whole-body predictive prior.",
-    "topics": [
-      "Робототехника",
-      "Гуманоиды",
-      "VLA/World Models"
-    ],
-    "relevance": "Высокая",
-    "links": [
-      {
-        "label": "arXiv",
-        "url": "https://arxiv.org/abs/2609.18197"
-      }
-    ]
-  },
-  {
-    "id": "2026-09-20-smelldiffusion",
-    "date": "2026-09-20",
-    "title": "SmellDiffusion: навигация квадрупеда к источнику газа через olfactory scene graph",
-    "summary": "SmellDiffusion объединяет species-specific gas zones, open-vocabulary olfactory scene graph и diffusion-based trajectory generation. В Gazebo авторы сравнивают diffusion и A* для движения к источнику газа.",
-    "why": "Для инспекционного робота это пример расширения perception за пределы камеры/LiDAR: семантическая цель формируется из химического сенсора, а затем передаётся планировщику.",
-    "topics": [
-      "Робототехника",
-      "Квадрупеды",
-      "Perception",
-      "SLAM/Навигация"
-    ],
-    "relevance": "Высокая",
-    "links": [
-      {
-        "label": "arXiv",
-        "url": "https://arxiv.org/abs/2609.20624"
-      }
-    ]
-  },
-  {
-    "id": "2026-09-20-omnimimic",
-    "date": "2026-09-20",
-    "title": "OmniMimic: multi-style omnidirectional locomotion из ограниченных animal demonstrations",
-    "summary": "OmniMimic расширяет демонстрации животных, обычно покрывающие узкий набор направлений, до omnidirectional quadruped policy через temporal reversal, dynamics completion и reflection.",
-    "why": "Это способ получить более естественные стили походки без ручного проектирования reward-функций для каждого направления и режима движения.",
-    "topics": [
-      "Робототехника",
-      "Квадрупеды"
-    ],
-    "relevance": "Высокая",
-    "links": [
-      {
-        "label": "arXiv",
-        "url": "https://arxiv.org/abs/2609.20566"
-      }
-    ]
-  },
-  {
-    "id": "2026-09-20-coref-gs",
-    "date": "2026-09-20",
-    "title": "CoRef-GS: cooperative Gaussian maps для multi-agent scene understanding",
-    "summary": "CoRef-GS строит и объединяет open-vocabulary instance-aware Gaussian maps нескольких агентов, а затем выполняет referring-language grounding в общей карте.",
-    "why": "Это напрямую связано с multi-robot mapping и семантическими картами: после геометрического слияния карт нужно сохранить совместимость instance semantics и spatial relations.",
-    "topics": [
-      "Робототехника",
-      "Perception",
-      "SLAM/Навигация"
-    ],
-    "relevance": "Высокая",
-    "links": [
-      {
-        "label": "arXiv",
-        "url": "https://arxiv.org/abs/2609.20586"
-      }
-    ]
-  },
-  {
-    "id": "2026-09-20-passage",
-    "date": "2026-09-20",
-    "title": "PASSAGE: perceptive humanoid traversal через scene-aligned motion learning",
-    "summary": "PASSAGE обучает humanoid traversal для stepping, squeezing и ducking в cluttered environments. Авторы собрали около 100 часов scene-aligned human motion в 1,500 сценах.",
-    "why": "Это пример перехода от task-specific locomotion policies к более широкому perceptive traversal, где выбор движения зависит от onboard perception и контекста препятствий.",
-    "topics": [
-      "Робототехника",
-      "Гуманоиды",
-      "Perception"
-    ],
-    "relevance": "Высокая",
-    "links": [
-      {
-        "label": "arXiv",
-        "url": "https://arxiv.org/abs/2609.18732"
-      }
-    ]
-  }
+{"id":"2026-09-13-openai-agents-api","date":"2026-09-13","title":"OpenAI Agents API: управляемый облачный harness для долгоживущих агентов","summary":"OpenAI открыл публичную beta Agents API — инфраструктуру с orchestration, контекст-менеджментом, tools, subagents и hosted environments для длительных агентных задач.","why":"Это заметный сдвиг от «вызова модели» к готовой инфраструктуре выполнения агентов. Для production-agent систем это уменьшает объём собственной обвязки вокруг контекста, инструментов и долгих сессий.","topics":["LLM","Coding Agents","Инструменты"],"relevance":"Высокая","links":[{"label":"OpenAI","url":"https://openai.com/index/introducing-the-agents-api/"}]},
+{"id":"2026-09-13-kimi-k28-preview","date":"2026-09-13","title":"Kimi Code K2.8 Preview: до 1M контекста и регулируемый thinking effort","summary":"Moonshot полностью развернул K2.8 Preview в Kimi Code. Модель доступна под прежним ID kimi-for-coding, поддерживает low/high/max thinking effort и контекст до 1M.","why":"Практически это усиливает Kimi как альтернативу для больших кодовых баз и длинных агентных сессий без обязательной миграции клиента на новый model ID.","topics":["LLM","Coding Agents"],"relevance":"Высокая","links":[{"label":"Kimi Code docs","url":"https://www.kimi.com/code/docs/en/kimi-code/whats-new.html"}]},
+{"id":"2026-09-13-deepseek-v41-flash","date":"2026-09-13","title":"DeepSeek-V4.1-Flash: новая MoE-модель с мультимодальностью и сниженной стоимостью","summary":"DeepSeek представил V4.1-Flash: 552B MoE, 8B активных параметров на input и 16B на output, нативное визуальное понимание и более компактный KV cache. Модель доступна через API как deepseek-flash.","why":"Для агентных и кодовых нагрузок важны одновременно пропускная способность, стоимость cache-hit и размер KV cache. Это делает модель интересной не только по benchmark-результатам, но и по инфраструктурной экономике.","topics":["LLM","Open-weight","Coding Agents"],"relevance":"Высокая","links":[{"label":"DeepSeek","url":"https://www.deepseek.com/en/news/deepseek-v4-1-flash/"},{"label":"API changelog","url":"https://api-docs.deepseek.com/updates/"}]},
+{"id":"2026-09-14-gpt-live-1-api","date":"2026-09-14","title":"GPT-Live-1 вышел в API для full-duplex voice","summary":"OpenAI выпустил GPT-Live-1 в API. Модель умеет одновременно слушать и говорить и рассчитана на более естественные голосовые агенты с меньшей задержкой.","why":"Для voice-agent приложений это упрощает архитектуру: меньше необходимости вручную собирать отдельные ASR/TTS/turn-taking компоненты и синхронизировать их.","topics":["LLM","Инструменты"],"relevance":"Высокая","links":[{"label":"OpenAI","url":"https://openai.com/index/introducing-gpt-live-1-in-the-api/"}]},
+{"id":"2026-09-14-claude-financial-advisors","date":"2026-09-14","title":"Anthropic запустил Claude for Financial Advisors","summary":"Anthropic представил специализированный продукт для финансовых консультантов с интеграциями в wealth-management и investment-платформы, включая BlackRock, Schwab и Addepar.","why":"Это хороший пример перехода LLM-продуктов от универсального чата к вертикальным workflow с доступом к отраслевым данным и инструментам.","topics":["LLM","Инструменты"],"relevance":"Средняя","links":[{"label":"Reuters","url":"https://www.reuters.com/business/anthropic-targets-financial-advisers-with-new-claude-tool-2026-09-14/"}]},
+{"id":"2026-09-14-grok-build","date":"2026-09-14","title":"Grok Build продолжает быстро наращивать agentic coding-функции","summary":"В сентябрьских обновлениях Grok Build развивались subagents, MCP, worktrees, background tasks и session tooling; позже memory стала generally available.","why":"Это показывает общий тренд coding agents: конкуренция смещается от качества одной генерации к orchestration, памяти, инструментам и управлению параллельной работой.","topics":["LLM","Coding Agents","Инструменты"],"relevance":"Средняя","links":[{"label":"xAI changelog","url":"https://x.ai/build/changelog"}]},
+{"id":"2026-09-15-chatgpt-work-data-agent","date":"2026-09-15","title":"Data agent в ChatGPT Work: анализ корпоративных данных через диалог","summary":"OpenAI представил Data agent в ChatGPT Work: он подключается к данным компании, исследует изменения и строит интерактивные dashboards без ручного написания запросов.","why":"Это расширяет LLM из текстового ассистента в рабочий слой поверх внутренних данных и BI-процессов, что особенно важно для аналитических и операционных workflows.","topics":["LLM","Инструменты"],"relevance":"Высокая","links":[{"label":"OpenAI","url":"https://openai.com/index/put-data-to-work/"}]},
+{"id":"2026-09-15-ros2-quadruped-nav","date":"2026-09-15","title":"Open-source ROS 2 навигационный стек для квадрупеда Spot","summary":"Публикация и репозиторий описывают ROS 2 платформу для Boston Dynamics Spot с SLAM Toolbox, Nav2, Smac Hybrid-A*, MPPI, frontier exploration, Zenoh и Foxglove.","why":"Это практически полезный воспроизводимый baseline для архитектуры автономной навигации квадрупеда: mapping/localization → global planner → local controller → exploration → remote telemetry.","topics":["Робототехника","SLAM/Навигация","Квадрупеды"],"relevance":"Высокая","links":[{"label":"Paper","url":"https://www.mdpi.com/2218-6581/15/4/70"},{"label":"GitHub","url":"https://github.com/mil-as/quadruped_navigation_ros2"}]},
+{"id":"2026-09-15-wholebodywam-grounded","date":"2026-09-15","title":"WholeBodyWAM: перенос world-action priors на humanoid loco-manipulation","summary":"Работа WholeBodyWAM предлагает связывать предобученные world-action priors с whole-body control semantics, чтобы координировать визуальное предсказание, манипуляцию и движение всего тела.","why":"Это шаг от arm-centric VLA/WAM к полнотелой гуманоидной координации, где locomotion и manipulation должны планироваться совместно.","topics":["Робототехника","Гуманоиды","VLA/World Models"],"relevance":"Высокая","links":[{"label":"arXiv","url":"https://arxiv.org/abs/2609.16644"}]},
+{"id":"2026-09-19-dr-mpc","date":"2026-09-19","title":"DR-MPC: ускоренный MPC для legged locomotion","summary":"DR-MPC переносит часть динамических равенств и affine input constraints в штрафы и решает box-constrained QP специализированным interior-point solver. На Unitree Go1 заявлено медианное onboard MPC-время 4.4 мс.","why":"Это релевантно низкоуровневому управлению квадрупедами: более быстрый MPC позволяет чаще пересчитывать contact-aware управление и лучше укладываться в real-time цикл.","topics":["Робототехника","Квадрупеды"],"relevance":"Высокая","links":[{"label":"arXiv","url":"https://arxiv.org/abs/2609.20035"}]},
+{"id":"2026-09-19-safeharness","date":"2026-09-19","title":"SafeHarness: coding agents для робот-манипуляции с явным obstacle-aware планированием","summary":"SafeHarness добавляет к coding-agent контроллеру отдельные механизмы route planning и безопасного contact execution. В статье заявлены 71.9% task success и 87.5% collision avoidance.","why":"Работа показывает, что одной текстовой инструкции «не сталкиваться» недостаточно: safety constraint нужно превращать в явную структуру планирования и проверки.","topics":["Робототехника","VLA/World Models","Perception"],"relevance":"Высокая","links":[{"label":"arXiv","url":"https://arxiv.org/abs/2609.20822"}]},
+{"id":"2026-09-19-wholebodywam-motion-priors","date":"2026-09-19","title":"WholeBodyWAM: масштабируемые motion priors для humanoid manipulation","summary":"Другая работа с названием WholeBodyWAM использует более 4 тысяч часов гетерогенных human/humanoid motion data для предобучения motion prior, который затем подключается к robot-specific action generation.","why":"Идея важна для data efficiency: вместо сбора огромного объёма траекторий на целевом роботе можно сначала обучить transferable whole-body predictive prior.","topics":["Робототехника","Гуманоиды","VLA/World Models"],"relevance":"Высокая","links":[{"label":"arXiv","url":"https://arxiv.org/abs/2609.18197"}]},
+{"id":"2026-09-20-smelldiffusion","date":"2026-09-20","title":"SmellDiffusion: навигация квадрупеда к источнику газа через olfactory scene graph","summary":"SmellDiffusion объединяет species-specific gas zones, open-vocabulary olfactory scene graph и diffusion-based trajectory generation. В Gazebo авторы сравнивают diffusion и A* для движения к источнику газа.","why":"Для инспекционного робота это пример расширения perception за пределы камеры/LiDAR: семантическая цель формируется из химического сенсора, а затем передаётся планировщику.","topics":["Робототехника","Квадрупеды","Perception","SLAM/Навигация"],"relevance":"Высокая","links":[{"label":"arXiv","url":"https://arxiv.org/abs/2609.20624"}]},
+{"id":"2026-09-20-omnimimic","date":"2026-09-20","title":"OmniMimic: multi-style omnidirectional locomotion из ограниченных animal demonstrations","summary":"OmniMimic расширяет демонстрации животных, обычно покрывающие узкий набор направлений, до omnidirectional quadruped policy через temporal reversal, dynamics completion и reflection.","why":"Это способ получить более естественные стили походки без ручного проектирования reward-функций для каждого направления и режима движения.","topics":["Робототехника","Квадрупеды"],"relevance":"Высокая","links":[{"label":"arXiv","url":"https://arxiv.org/abs/2609.20566"}]},
+{"id":"2026-09-20-coref-gs","date":"2026-09-20","title":"CoRef-GS: cooperative Gaussian maps для multi-agent scene understanding","summary":"CoRef-GS строит и объединяет open-vocabulary instance-aware Gaussian maps нескольких агентов, а затем выполняет referring-language grounding в общей карте.","why":"Это напрямую связано с multi-robot mapping и семантическими картами: после геометрического слияния карт нужно сохранить совместимость instance semantics и spatial relations.","topics":["Робототехника","Perception","SLAM/Навигация"],"relevance":"Высокая","links":[{"label":"arXiv","url":"https://arxiv.org/abs/2609.20586"}]},
+{"id":"2026-09-20-passage","date":"2026-09-20","title":"PASSAGE: perceptive humanoid traversal через scene-aligned motion learning","summary":"PASSAGE обучает humanoid traversal для stepping, squeezing и ducking в cluttered environments. Авторы собрали около 100 часов scene-aligned human motion в 1,500 сценах.","why":"Это пример перехода от task-specific locomotion policies к более широкому perceptive traversal, где выбор движения зависит от onboard perception и контекста препятствий.","topics":["Робототехника","Гуманоиды","Perception"],"relevance":"Высокая","links":[{"label":"arXiv","url":"https://arxiv.org/abs/2609.18732"}]},
+{"id":"2026-09-21-recmorph","date":"2026-09-21","title":"RecMorph: одна topology-aware policy для разных морфологий и реальных Go1/Go2","summary":"RecMorph кодирует кинематическое дерево робота как последовательность через depth-first traversal и прогоняет по ней общий bidirectional recurrent блок. В экспериментах одна policy переносилась между морфологиями; на квадрупедах авторы сообщают 43.5% снижение nominal velocity RMSE относительно specialist MLP и 40 физических испытаний Go1/Go2 без падений.","why":"Это сильная работа именно для legged robotics: вместо отдельной policy под каждую механику появляется архитектура, где топология тела встроена в вычисление. Новизна не в самой идее morphology-conditioned control, а в простом recurrent-механизме с линейной token complexity и подтверждением на нескольких физических квадрупедах.","details":"<p>RecMorph решает задачу generalized morphology control: одна сеть должна управлять телами с разным числом и ролью конечностей. Кинематическое дерево обходится depth-first и превращается в morphology-derived sequence; затем shared bidirectional recurrent transitions передают и преобразуют информацию между конечностями перед декодированием действий.</p><p>В отличие от attention-heavy схем, вычислительная сложность по числу limb tokens остаётся линейной при фиксированной ширине и глубине. Авторы добавляют residual preservation, RMS normalization и input-dependent channel modulation, чтобы стабилизировать многократное spatial transformation.</p><p>Практически наиболее интересна проверка вне процедурных UNIMAL: четыре quadruped-платформы, включая реальные Unitree Go1/Go2. Заявлены лучший macro-average среди сравниваемых generalized controllers, снижение nominal velocity RMSE на 43.5% относительно specialist MLP и 40 физических испытаний без падений.</p><p>Ограничение: это пока locomotion/control, а не универсальная cross-embodiment policy для perception, planning и manipulation. Но для парка похожих роботов идея потенциально уменьшает число отдельных контроллеров и объём повторного обучения.</p>","topics":["Робототехника","Квадрупеды"],"relevance":"Высокая","links":[{"label":"arXiv","url":"https://arxiv.org/abs/2609.18359"},{"label":"GitHub","url":"https://github.com/quanruirao/RecMorph"}]},
+{"id":"2026-09-21-viloman","date":"2026-09-21","title":"ViLoMan: whole-body loco-manipulation на G1 только по onboard depth + proprioception","summary":"ViLoMan превращает частичные human-object demonstrations в физически исполнимые траектории, затем через teacher-student distillation обучает единую policy, которая напрямую выдаёт whole-body joint actions из egocentric depth и proprioception. На реальном Unitree G1 показано автономное закрывание дверей без reference motion или промежуточных команд во время исполнения.","why":"Это важнее очередного красивого humanoid demo, потому что execution policy замыкается на onboard sensing и управляет всем телом, а не проигрывает заранее известную траекторию. Работа атакует реальный разрыв между demonstration data и автономным visuomotor loco-manipulation.","details":"<p>ViLoMan начинается с неполных кинематических демонстраций взаимодействия человека с объектом. Система достраивает их до полных физически исполнимых robot trajectories, пригодных для whole-body обучения.</p><p>Далее teacher policy использует более богатую информацию, а student distillation формирует deployable policy. На исполнении ей нужны только egocentric depth observations и proprioception; reference motions и отдельные high-level intermediate commands не требуются. Выход — joint-level whole-body actions.</p><p>Авторы проверяют подход на закрывании дверей с разными конфигурациями и начальными положениями, включая sim-to-real на Unitree G1. Это уже ближе к автономной мобильной манипуляции, чем системы, где perception, locomotion и manipulation демонстрируются раздельно.</p><p>Пока область задачи узкая — двери, а значит нельзя считать это general-purpose loco-manipulation. Но архитектурно интересен именно переход от подготовленных demonstrations к автономной closed-loop policy на бортовых сенсорах.</p>","topics":["Робототехника","Гуманоиды","Perception"],"relevance":"Высокая","links":[{"label":"arXiv","url":"https://arxiv.org/abs/2609.19340"},{"label":"Project","url":"https://viloman-anonymous.pages.dev/"}]},
+{"id":"2026-09-21-slope-adaptive-g1","date":"2026-09-21","title":"Unitree G1 учат работать на наклонной крыше: scene-grounded whole-body learning","summary":"Исследователи совместили human demonstrations, метрическую модель крыши, trajectory optimization и execution-aware RL, чтобы G1 сохранял опоры, clearance и non-penetration при ходьбе и рабочих движениях на склоне. В физических опытах показаны uphill walking, nailgun positioning, hammering и bending; средняя base-frame motion error была ниже 80 мм.","why":"Ключевой результат — демонстрацию нельзя просто retarget на humanoid: она должна быть привязана к геометрии сцены и физическим контактам. Это полезная инженерная схема для обучения whole-body skills в средах, где поверхность и рабочая зона задают жёсткие пространственные ограничения.","details":"<p>Human motion сначала retarget-ится на Unitree G1, но этого недостаточно: геометрически похожая поза может поставить стопу или инструмент внутрь крыши. Поэтому авторы используют метрическую roof model и trajectory-level optimization, которая корректирует support contacts, рабочий clearance и non-penetration, сохраняя структуру исходного движения.</p><p>После этого execution-aware reinforcement learning обучает policy удерживать эти отношения уже при динамических tracking errors. Проверяются разные уклоны и задачи: ходьба, nailgun positioning, hammering, pushing и другие whole-body motions.</p><p>В симуляции work-clearance errors для nailgun/hammering/pushing составили примерно 0.256–0.531 см; физические демонстрации на G1 дали mean base-frame motion errors ниже 80 мм. При этом generalization по неизвестному углу крыши ограничен: обучение только на части уклонов не обеспечило надёжного переноса на 25°.</p><p>Это не автономный робот-кровельщик: использовался safety hoist, нет полноценного tool-force control и работы на реальной крыше. Но подход хорошо показывает, как связывать motion imitation с явной геометрией среды — принцип применим и к другим constrained locomotion/loco-manipulation задачам.</p>","topics":["Робототехника","Гуманоиды","Perception"],"relevance":"Высокая","links":[{"label":"arXiv","url":"https://arxiv.org/abs/2609.20558"}]}
 ]
 </script>
 <script>
 const themeKey='ai-digest-theme-v1';
 function preferredTheme(){const saved=localStorage.getItem(themeKey);if(saved==='light'||saved==='dark')return saved;return window.matchMedia&&window.matchMedia('(prefers-color-scheme: light)').matches?'light':'dark';}
 function applyTheme(theme){document.documentElement.dataset.theme=theme;const b=document.getElementById('themeToggle');if(b){b.textContent=theme==='light'?'🌙':'☀️';b.title=theme==='light'?'Включить тёмную тему':'Включить светлую тему';}}
-applyTheme(preferredTheme());
-document.getElementById('themeToggle').onclick=()=>{const next=document.documentElement.dataset.theme==='light'?'dark':'light';localStorage.setItem(themeKey,next);applyTheme(next);};
+applyTheme(preferredTheme());document.getElementById('themeToggle').onclick=()=>{const next=document.documentElement.dataset.theme==='light'?'dark':'light';localStorage.setItem(themeKey,next);applyTheme(next);};
 const data = JSON.parse(document.getElementById('digest-data').textContent || '[]');
-const pinsKey='ai-digest-pins-v1';
-const pins=new Set(JSON.parse(localStorage.getItem(pinsKey)||'[]'));
-let state={view:'all',topic:'all',date:null,q:''};
-const topicOrder=['Робототехника','SLAM/Навигация','Квадрупеды','Гуманоиды','VLA/World Models','Perception','LLM','Coding Agents','Open-weight','Инструменты'];
-function topics(){return [...new Set(data.flatMap(x=>x.topics||[]))].sort((a,b)=>topicOrder.indexOf(a)-topicOrder.indexOf(b));}
-function savePins(){localStorage.setItem(pinsKey,JSON.stringify([...pins]));}
-function renderNav(){const nav=document.getElementById('topicNav');nav.innerHTML='';topics().forEach(t=>{const b=document.createElement('button');b.className='navbtn';b.textContent=t;b.onclick=()=>{state.topic=t;state.date=null;state.view='all';render();};nav.appendChild(b)});
-const counts={}; data.forEach(x=>counts[x.date]=(counts[x.date]||0)+1); const cal=document.getElementById('calendar');cal.innerHTML=''; Object.keys(counts).sort().reverse().forEach(d=>{const b=document.createElement('button');b.className='navbtn calday';b.innerHTML=`<span>${new Date(d+'T00:00:00').toLocaleDateString('ru-RU',{day:'2-digit',month:'short',year:'numeric'})}</span><span class="count">${counts[d]}</span>`;b.onclick=()=>{state.date=d;state.topic='all';state.view='all';render();};cal.appendChild(b)});
-const fs=document.getElementById('filters');fs.innerHTML='';['all',...topics()].forEach(t=>{const b=document.createElement('button');b.className='chip'+(state.topic===t?' active':'');b.textContent=t==='all'?'Все':t;b.onclick=()=>{state.topic=t;state.date=null;render()};fs.appendChild(b)});}
+const pinsKey='ai-digest-pins-v1';const pins=new Set(JSON.parse(localStorage.getItem(pinsKey)||'[]'));let state={view:'all',topic:'all',date:null,q:''};const topicOrder=['Робототехника','SLAM/Навигация','Квадрупеды','Гуманоиды','VLA/World Models','Perception','LLM','Coding Agents','Open-weight','Инструменты'];
+function topics(){return [...new Set(data.flatMap(x=>x.topics||[]))].sort((a,b)=>topicOrder.indexOf(a)-topicOrder.indexOf(b));}function savePins(){localStorage.setItem(pinsKey,JSON.stringify([...pins]));}
+function renderNav(){const nav=document.getElementById('topicNav');nav.innerHTML='';topics().forEach(t=>{const b=document.createElement('button');b.className='navbtn';b.textContent=t;b.onclick=()=>{state.topic=t;state.date=null;state.view='all';render();};nav.appendChild(b)});const counts={};data.forEach(x=>counts[x.date]=(counts[x.date]||0)+1);const cal=document.getElementById('calendar');cal.innerHTML='';Object.keys(counts).sort().reverse().forEach(d=>{const b=document.createElement('button');b.className='navbtn calday';b.innerHTML=`<span>${new Date(d+'T00:00:00').toLocaleDateString('ru-RU',{day:'2-digit',month:'short',year:'numeric'})}</span><span class="count">${counts[d]}</span>`;b.onclick=()=>{state.date=d;state.topic='all';state.view='all';render();};cal.appendChild(b)});const fs=document.getElementById('filters');fs.innerHTML='';['all',...topics()].forEach(t=>{const b=document.createElement('button');b.className='chip'+(state.topic===t?' active':'');b.textContent=t==='all'?'Все':t;b.onclick=()=>{state.topic=t;state.date=null;render()};fs.appendChild(b)});}
 function match(x){if(state.view==='pins'&&!pins.has(x.id))return false;if(state.topic!=='all'&&!(x.topics||[]).includes(state.topic))return false;if(state.date&&x.date!==state.date)return false;if(state.q){const s=(x.title+' '+x.summary+' '+x.why+' '+(x.details||'')+' '+((x.topics||[]).join(' '))).toLowerCase();if(!s.includes(state.q.toLowerCase()))return false;}return true;}
 function llmText(x){const sources=(x.links||[]).map(l=>'- '+l.label+': '+l.url).join('\n');return `Хочу обсудить эту тему:\n\n${x.title}\n\nКраткое описание:\n${x.summary||''}\n\nПочему это важно:\n${x.why||''}\n\nПодробности:\n${x.details||'Дополнительных деталей в архиве пока нет. При необходимости проанализируй первоисточник и объясни тему глубже.'}\n\nИсточники:\n${sources||'Нет ссылок'}\n\nПожалуйста:\n1) объясни идею простыми словами;\n2) разложи технически, как это работает;\n3) укажи ограничения и спорные места;\n4) сравни с ближайшими альтернативами;\n5) скажи, где это практически применимо.`;}
 async function copyForLLM(x,btn){try{await navigator.clipboard.writeText(llmText(x));btn.classList.add('copied');const old=btn.textContent;btn.textContent='✓ Скопировано';setTimeout(()=>{btn.textContent=old;btn.classList.remove('copied')},1500);}catch(e){const ta=document.createElement('textarea');ta.value=llmText(x);document.body.appendChild(ta);ta.select();document.execCommand('copy');ta.remove();btn.textContent='✓ Скопировано';setTimeout(()=>btn.textContent='⧉ Для LLM',1500);}}
-const modal=document.getElementById('detailModal');const detailTitle=document.getElementById('detailTitle');const detailMeta=document.getElementById('detailMeta');const detailBody=document.getElementById('detailBody');const detailCopy=document.getElementById('detailCopy');let currentDetail=null;
+const modal=document.getElementById('detailModal'),detailTitle=document.getElementById('detailTitle'),detailMeta=document.getElementById('detailMeta'),detailBody=document.getElementById('detailBody'),detailCopy=document.getElementById('detailCopy');let currentDetail=null;
 function openDetail(x){currentDetail=x;detailTitle.textContent=x.title;const badges=(x.topics||[]).map(t=>`<span class="badge">${t}</span>`).join('');detailMeta.innerHTML=`${badges}${x.relevance?` · Практическая ценность: ${x.relevance}`:''} · ${new Date(x.date+'T00:00:00').toLocaleDateString('ru-RU')}`;const sources=(x.links||[]).map(l=>`<a href="${l.url}" target="_blank" rel="noopener">${l.label}</a>`).join('');const details=x.details||`<p>${x.summary||''}</p><p>${x.why||''}</p>`;detailBody.innerHTML=`<div class="detailsec"><h3>Развёрнутое summary</h3>${details.startsWith('<')?details:`<p>${details}</p>`}</div>${x.why?`<div class="detailsec"><h3>Почему это важно</h3><p>${x.why}</p></div>`:''}<div class="detailsec"><h3>Источники</h3><div class="source-list">${sources||'Нет ссылок'}</div></div>`;modal.classList.add('open');modal.setAttribute('aria-hidden','false');location.hash='article-'+x.id;}
-function closeDetail(){modal.classList.remove('open');modal.setAttribute('aria-hidden','true');currentDetail=null;if(location.hash.startsWith('#article-'))history.replaceState(null,'',location.pathname+location.search);}
-document.getElementById('detailClose').onclick=closeDetail;modal.onclick=e=>{if(e.target===modal)closeDetail()};document.addEventListener('keydown',e=>{if(e.key==='Escape')closeDetail()});detailCopy.onclick=()=>currentDetail&&copyForLLM(currentDetail,detailCopy);
+function closeDetail(){modal.classList.remove('open');modal.setAttribute('aria-hidden','true');currentDetail=null;if(location.hash.startsWith('#article-'))history.replaceState(null,'',location.pathname+location.search);}document.getElementById('detailClose').onclick=closeDetail;modal.onclick=e=>{if(e.target===modal)closeDetail()};document.addEventListener('keydown',e=>{if(e.key==='Escape')closeDetail()});detailCopy.onclick=()=>currentDetail&&copyForLLM(currentDetail,detailCopy);
 function render(){renderNav();document.querySelectorAll('.navbtn[data-view]').forEach(b=>b.classList.toggle('active',b.dataset.view===state.view));const rows=data.filter(match).sort((a,b)=>b.date.localeCompare(a.date));const by={};rows.forEach(x=>(by[x.date]??=[]).push(x));const root=document.getElementById('content');root.innerHTML='';if(!rows.length){root.innerHTML='<div class="empty">Пока здесь нет материалов по выбранному фильтру.</div>';return;}Object.keys(by).sort().reverse().forEach(d=>{const sec=document.createElement('section');sec.className='day';sec.innerHTML=`<h2>${new Date(d+'T00:00:00').toLocaleDateString('ru-RU',{day:'numeric',month:'long',year:'numeric'})}</h2><div class="cards"></div>`;const cards=sec.querySelector('.cards');by[d].forEach(x=>{const c=document.createElement('article');c.className='card';const badges=(x.topics||[]).map(t=>`<span class="badge">${t}</span>`).join('');const rel=x.relevance?` · <span class="${x.relevance==='Высокая'?'high':'medium'}">Практическая ценность: ${x.relevance}</span>`:'';const links=(x.links||[]).map(l=>`<a href="${l.url}" target="_blank" rel="noopener">${l.label}</a>`).join('');c.innerHTML=`<div class="cardhead"><div><div class="title">${x.title}</div><div class="meta">${badges}${rel}</div></div><div class="actions"><button class="detailbtn">Подробнее</button><button class="copybtn">⧉ Для LLM</button><button class="pin ${pins.has(x.id)?'on':''}">${pins.has(x.id)?'★ Закреплено':'☆ Закрепить'}</button></div></div><div class="summary">${x.summary}</div>${x.why?`<div class="why"><b>Почему важно:</b> ${x.why}</div>`:''}${x.note?`<div class="meta">${x.note}</div>`:''}<div class="links">${links}</div>`;c.querySelector('.detailbtn').onclick=()=>openDetail(x);c.querySelector('.copybtn').onclick=e=>copyForLLM(x,e.currentTarget);c.querySelector('.pin').onclick=()=>{pins.has(x.id)?pins.delete(x.id):pins.add(x.id);savePins();render();};cards.appendChild(c)});root.appendChild(sec)});}
 document.querySelectorAll('.navbtn[data-view]').forEach(b=>b.onclick=()=>{state.view=b.dataset.view;state.date=null;render();});document.getElementById('search').oninput=e=>{state.q=e.target.value;render()};render();const hashId=location.hash.startsWith('#article-')?location.hash.slice(9):'';if(hashId){const x=data.find(i=>i.id===hashId);if(x)openDetail(x);}
 </script>
