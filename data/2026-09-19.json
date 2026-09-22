@@ -1,0 +1,58 @@
+[
+  {
+    "id": "2026-09-19-dr-mpc",
+    "date": "2026-09-19",
+    "title": "DR-MPC: ускоренный MPC для legged locomotion",
+    "summary": "DR-MPC переносит часть динамических равенств и affine input constraints в штрафы и решает box-constrained QP специализированным interior-point solver. На Unitree Go1 заявлено медианное onboard MPC-время 4.4 мс.",
+    "why": "Это релевантно низкоуровневому управлению квадрупедами: более быстрый MPC позволяет чаще пересчитывать contact-aware управление и лучше укладываться в real-time цикл.",
+    "topics": [
+      "Робототехника",
+      "Квадрупеды"
+    ],
+    "relevance": "Высокая",
+    "links": [
+      {
+        "label": "arXiv",
+        "url": "https://arxiv.org/abs/2609.20035"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-19-safeharness",
+    "date": "2026-09-19",
+    "title": "SafeHarness: coding agents для робот-манипуляции с явным obstacle-aware планированием",
+    "summary": "SafeHarness добавляет к coding-agent контроллеру отдельные механизмы route planning и безопасного contact execution. В статье заявлены 71.9% task success и 87.5% collision avoidance.",
+    "why": "Работа показывает, что одной текстовой инструкции «не сталкиваться» недостаточно: safety constraint нужно превращать в явную структуру планирования и проверки.",
+    "topics": [
+      "Робототехника",
+      "VLA/World Models",
+      "Perception"
+    ],
+    "relevance": "Высокая",
+    "links": [
+      {
+        "label": "arXiv",
+        "url": "https://arxiv.org/abs/2609.20822"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-19-wholebodywam-motion-priors",
+    "date": "2026-09-19",
+    "title": "WholeBodyWAM: масштабируемые motion priors для humanoid manipulation",
+    "summary": "Другая работа с названием WholeBodyWAM использует более 4 тысяч часов гетерогенных human/humanoid motion data для предобучения motion prior, который затем подключается к robot-specific action generation.",
+    "why": "Идея важна для data efficiency: вместо сбора огромного объёма траекторий на целевом роботе можно сначала обучить transferable whole-body predictive prior.",
+    "topics": [
+      "Робототехника",
+      "Гуманоиды",
+      "VLA/World Models"
+    ],
+    "relevance": "Высокая",
+    "links": [
+      {
+        "label": "arXiv",
+        "url": "https://arxiv.org/abs/2609.18197"
+      }
+    ]
+  }
+]
