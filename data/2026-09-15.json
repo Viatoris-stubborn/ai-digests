@@ -1,0 +1,62 @@
+[
+  {
+    "id": "2026-09-15-chatgpt-work-data-agent",
+    "date": "2026-09-15",
+    "title": "Data agent в ChatGPT Work: анализ корпоративных данных через диалог",
+    "summary": "OpenAI представил Data agent в ChatGPT Work: он подключается к данным компании, исследует изменения и строит интерактивные dashboards без ручного написания запросов.",
+    "why": "Это расширяет LLM из текстового ассистента в рабочий слой поверх внутренних данных и BI-процессов, что особенно важно для аналитических и операционных workflows.",
+    "topics": [
+      "LLM",
+      "Инструменты"
+    ],
+    "relevance": "Высокая",
+    "links": [
+      {
+        "label": "OpenAI",
+        "url": "https://openai.com/index/put-data-to-work/"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-15-ros2-quadruped-nav",
+    "date": "2026-09-15",
+    "title": "Open-source ROS 2 навигационный стек для квадрупеда Spot",
+    "summary": "Публикация и репозиторий описывают ROS 2 платформу для Boston Dynamics Spot с SLAM Toolbox, Nav2, Smac Hybrid-A*, MPPI, frontier exploration, Zenoh и Foxglove.",
+    "why": "Это практически полезный воспроизводимый baseline для архитектуры автономной навигации квадрупеда: mapping/localization → global planner → local controller → exploration → remote telemetry.",
+    "topics": [
+      "Робототехника",
+      "SLAM/Навигация",
+      "Квадрупеды"
+    ],
+    "relevance": "Высокая",
+    "links": [
+      {
+        "label": "Paper",
+        "url": "https://www.mdpi.com/2218-6581/15/4/70"
+      },
+      {
+        "label": "GitHub",
+        "url": "https://github.com/mil-as/quadruped_navigation_ros2"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-15-wholebodywam-grounded",
+    "date": "2026-09-15",
+    "title": "WholeBodyWAM: перенос world-action priors на humanoid loco-manipulation",
+    "summary": "Работа WholeBodyWAM предлагает связывать предобученные world-action priors с whole-body control semantics, чтобы координировать визуальное предсказание, манипуляцию и движение всего тела.",
+    "why": "Это шаг от arm-centric VLA/WAM к полнотелой гуманоидной координации, где locomotion и manipulation должны планироваться совместно.",
+    "topics": [
+      "Робототехника",
+      "Гуманоиды",
+      "VLA/World Models"
+    ],
+    "relevance": "Высокая",
+    "links": [
+      {
+        "label": "arXiv",
+        "url": "https://arxiv.org/abs/2609.16644"
+      }
+    ]
+  }
+]
