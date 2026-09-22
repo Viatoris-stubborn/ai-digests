@@ -1,0 +1,62 @@
+[
+  {
+    "id": "2026-09-13-openai-agents-api",
+    "date": "2026-09-13",
+    "title": "OpenAI Agents API: управляемый облачный harness для долгоживущих агентов",
+    "summary": "OpenAI открыл публичную beta Agents API — инфраструктуру с orchestration, контекст-менеджментом, tools, subagents и hosted environments для длительных агентных задач.",
+    "why": "Это заметный сдвиг от «вызова модели» к готовой инфраструктуре выполнения агентов. Для production-agent систем это уменьшает объём собственной обвязки вокруг контекста, инструментов и долгих сессий.",
+    "topics": [
+      "LLM",
+      "Coding Agents",
+      "Инструменты"
+    ],
+    "relevance": "Высокая",
+    "links": [
+      {
+        "label": "OpenAI",
+        "url": "https://openai.com/index/introducing-the-agents-api/"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-13-kimi-k28-preview",
+    "date": "2026-09-13",
+    "title": "Kimi Code K2.8 Preview: до 1M контекста и регулируемый thinking effort",
+    "summary": "Moonshot полностью развернул K2.8 Preview в Kimi Code. Модель доступна под прежним ID kimi-for-coding, поддерживает low/high/max thinking effort и контекст до 1M.",
+    "why": "Практически это усиливает Kimi как альтернативу для больших кодовых баз и длинных агентных сессий без обязательной миграции клиента на новый model ID.",
+    "topics": [
+      "LLM",
+      "Coding Agents"
+    ],
+    "relevance": "Высокая",
+    "links": [
+      {
+        "label": "Kimi Code docs",
+        "url": "https://www.kimi.com/code/docs/en/kimi-code/whats-new.html"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-13-deepseek-v41-flash",
+    "date": "2026-09-13",
+    "title": "DeepSeek-V4.1-Flash: новая MoE-модель с мультимодальностью и сниженной стоимостью",
+    "summary": "DeepSeek представил V4.1-Flash: 552B MoE, 8B активных параметров на input и 16B на output, нативное визуальное понимание и более компактный KV cache. Модель доступна через API как deepseek-flash.",
+    "why": "Для агентных и кодовых нагрузок важны одновременно пропускная способность, стоимость cache-hit и размер KV cache. Это делает модель интересной не только по benchmark-результатам, но и по инфраструктурной экономике.",
+    "topics": [
+      "LLM",
+      "Open-weight",
+      "Coding Agents"
+    ],
+    "relevance": "Высокая",
+    "links": [
+      {
+        "label": "DeepSeek",
+        "url": "https://www.deepseek.com/en/news/deepseek-v4-1-flash/"
+      },
+      {
+        "label": "API changelog",
+        "url": "https://api-docs.deepseek.com/updates/"
+      }
+    ]
+  }
+]
