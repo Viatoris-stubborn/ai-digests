@@ -1,0 +1,57 @@
+[
+  {
+    "id": "2026-09-14-gpt-live-1-api",
+    "date": "2026-09-14",
+    "title": "GPT-Live-1 вышел в API для full-duplex voice",
+    "summary": "OpenAI выпустил GPT-Live-1 в API. Модель умеет одновременно слушать и говорить и рассчитана на более естественные голосовые агенты с меньшей задержкой.",
+    "why": "Для voice-agent приложений это упрощает архитектуру: меньше необходимости вручную собирать отдельные ASR/TTS/turn-taking компоненты и синхронизировать их.",
+    "topics": [
+      "LLM",
+      "Инструменты"
+    ],
+    "relevance": "Высокая",
+    "links": [
+      {
+        "label": "OpenAI",
+        "url": "https://openai.com/index/introducing-gpt-live-1-in-the-api/"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-14-claude-financial-advisors",
+    "date": "2026-09-14",
+    "title": "Anthropic запустил Claude for Financial Advisors",
+    "summary": "Anthropic представил специализированный продукт для финансовых консультантов с интеграциями в wealth-management и investment-платформы, включая BlackRock, Schwab и Addepar.",
+    "why": "Это хороший пример перехода LLM-продуктов от универсального чата к вертикальным workflow с доступом к отраслевым данным и инструментам.",
+    "topics": [
+      "LLM",
+      "Инструменты"
+    ],
+    "relevance": "Средняя",
+    "links": [
+      {
+        "label": "Reuters",
+        "url": "https://www.reuters.com/business/anthropic-targets-financial-advisers-with-new-claude-tool-2026-09-14/"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-14-grok-build",
+    "date": "2026-09-14",
+    "title": "Grok Build продолжает быстро наращивать agentic coding-функции",
+    "summary": "В сентябрьских обновлениях Grok Build развивались subagents, MCP, worktrees, background tasks и session tooling; позже memory стала generally available.",
+    "why": "Это показывает общий тренд coding agents: конкуренция смещается от качества одной генерации к orchestration, памяти, инструментам и управлению параллельной работой.",
+    "topics": [
+      "LLM",
+      "Coding Agents",
+      "Инструменты"
+    ],
+    "relevance": "Средняя",
+    "links": [
+      {
+        "label": "xAI changelog",
+        "url": "https://x.ai/build/changelog"
+      }
+    ]
+  }
+]
