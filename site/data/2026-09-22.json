@@ -8,10 +8,7 @@
     "details": "<p>Обычная VLA-policy учится отображать observation и language напрямую в action, поэтому её понимание динамики мира в значительной степени зависит от покрытия demonstrations. World model получает более сильный обучающий сигнал — необходимость предсказывать развитие сцены, — но генерация будущего слишком медленна для высокочастотного control loop.</p><p>Авторы разделяют эти две вещи. Frozen world model один раз прогоняется по training frames, его internal features кэшируются, а VLA student получает дополнительный feature-alignment loss. После обучения projector удаляется, teacher больше не нужен, поэтому runtime architecture и вычислительная стоимость остаются такими же, как у исходной VLA.</p><p>Для 0.8B student авторы сообщают 97.9% success на LIBERO и рост с 48.2% до 50.5% на RoboCasa-GR1 humanoid manipulation. Подход также перенесён на реальные single-arm и bimanual системы; эффект сохранялся при смене student scale, backbone, alignment layer и teacher.</p><p>Новизна здесь не в distillation как таковой, а в использовании внутренних world-model representations как физического prior без world-model inference. Пока улучшение на RoboCasa умеренное и работа в основном про manipulation, а не mobile navigation. Но принцип потенциально важен для embodied policies на роботах с ограниченным onboard compute: обучать representation с дорогим teacher офлайн, а исполнять компактную policy в реальном времени.</p>",
     "topics": ["Робототехника", "VLA/World Models", "Гуманоиды", "Perception"],
     "relevance": "Высокая",
-    "links": [
-      {"label": "arXiv", "url": "https://arxiv.org/abs/2609.24682"},
-      {"label": "Project", "url": "https://thaw-vla.trung-dt.com/"}
-    ]
+    "links": [{"label":"arXiv","url":"https://arxiv.org/abs/2609.24682"},{"label":"Project","url":"https://thaw-vla.trung-dt.com/"}]
   },
   {
     "id": "2026-09-22-unitree-dex5-s",
@@ -22,9 +19,7 @@
     "details": "<p>Dex5-S развивает предыдущую Dex5: новая кисть имеет 22 моторизованные степени свободы и отдельный привод roll для мизинца. По опубликованным спецификациям масса руки около 620 г, максимальная нагрузка порядка 2 кг, непрерывная — около 1 кг; заявлены dual encoders и backdrivable joints.</p><p>Backdrivability особенно важна для teleoperation, imitation learning и безопасного физического взаимодействия: внешняя сила может механически сместить сустав вместо жёсткого сопротивления привода. Unitree также заявляет impact-torque protection для защиты редукторов. Pro-конфигурация добавляет tactile sensing, что потенциально полезно для closed-loop grasping.</p><p>Относительно рынка это не научный прорыв: dexterous hands с высокой артикуляцией существуют давно. Значимость в сочетании характеристик, человеческого форм-фактора и серийной доступности от производителя G1/H1/Go2. Это может снизить барьер для лабораторий, обучающих manipulation policies на humanoid hardware.</p><p>Главное ограничение сейчас — отсутствие достаточных независимых данных о repeatability, backlash, force control, tactile quality и ресурсе механизмов. Поэтому 22 DOF нельзя автоматически трактовать как качественную человеческую ловкость. Для квадрупедной автономной навигации связь косвенная; для mobile manipulation и гуманоидов — прямая.</p>",
     "topics": ["Робототехника", "Гуманоиды", "Perception"],
     "relevance": "Средняя",
-    "links": [
-      {"label": "Launch coverage / specifications", "url": "https://www.humanoidsdaily.com/news/unitree-dex5-s-robot-hand"}
-    ]
+    "links": [{"label":"Launch coverage / specifications","url":"https://www.humanoidsdaily.com/news/unitree-dex5-s-robot-hand"}]
   },
   {
     "id": "2026-09-22-ifr-humanoid-sales-baseline",
@@ -35,8 +30,39 @@
     "details": "<p>По данным IFR, в 2025 году было продано примерно 7 тысяч humanoid robots для промышленных и профессиональных сервисных сценариев. Для сравнения, зрелые категории исчисляются сотнями тысяч установок в год: humanoids пока составляют небольшую нишу.</p><p>Особенно важно, что многие из этих роботов покупались исследовательскими организациями и компаниями для AI development, а не как готовая замена человеку на производственной линии. Автопроизводители остаются ранними пользователями, но в основном в форме ограниченных пилотов.</p><p>Это не технологический релиз, зато важный measurement point. До сих пор рынок humanoids часто обсуждался через инвестиции, планы выпуска и демонстрации. Регулярная статистика IFR позволяет отделять поставленное железо от заявленных производственных мощностей и будущих заказов.</p><p>Для автономных роботов вывод практический: hardware supply быстро растёт, но bottleneck остаётся в надёжном software stack — perception, manipulation, task planning, safety и uptime. Именно эти метрики определят, превратятся ли нынешние research deployments в эксплуатационный рынок.</p>",
     "topics": ["Робототехника", "Гуманоиды"],
     "relevance": "Средняя",
-    "links": [
-      {"label": "Reuters", "url": "https://www.reuters.com/technology/humanoid-robot-sales-tally-hit-7000-globally-last-year-2026-09-21/"}
-    ]
+    "links": [{"label":"Reuters","url":"https://www.reuters.com/technology/humanoid-robot-sales-tally-hit-7000-globally-last-year-2026-09-21/"}]
+  },
+  {
+    "id": "2026-09-22-gpt6-sol-luna",
+    "date": "2026-09-22",
+    "title": "GPT-6 Sol и Luna: OpenAI резко снизила цену рабочего и массового tiers",
+    "summary": "OpenAI выпустила GPT-6 Sol и GPT-6 Luna. API стоит $2/$10 и $0.10/$0.50 за миллион input/output tokens соответственно — на 50% дешевле промо-цен GPT-5.6. Sol ориентирован на coding, agents и professional work, Luna — на массовые дешёвые задачи; обе модели доступны в API, Codex и ChatGPT Work.",
+    "why": "Главное изменение — не только рост качества, а сдвиг cost/performance frontier. Sol приближается к дорогим frontier-моделям на coding/agent задачах при существенно меньшей стоимости, а Luna делает reasoning и coding-подобные workloads доступными по цене, близкой к прежним ultra-cheap моделям.",
+    "details": "<p>GPT-6 Sol и Luna используют методы поколения Astra, но оптимизированы под более дешёвый inference. OpenAI указывает цены $2 input / $10 output для Sol и $0.10 / $0.50 для Luna за миллион токенов. Улучшенный prompt caching даёт 90% скидку на cached input reads и позволяет менять reasoning effort или набор tools без разрушения ранее закэшированного контекста.</p><p>На опубликованном DeepSWE v1.1 GPT-6 Sol max набирает 68.8%, всего примерно на пункт ниже лучшего результата Claude Fable 5 в приведённом сравнении; Luna max — 66.6%. На OSWorld 2.0 Sol xhigh показывает 60.5%, практически совпадая с Claude Opus 5 medium 60.3%, но OpenAI оценивает стоимость задачи примерно на 80% ниже.</p><p>Нужно учитывать, что большая часть сегодняшних цифр — оценки OpenAI и сравнения с ранее опубликованными конкурентными результатами, а не полностью независимый simultaneous benchmark. Поэтому вывод «Sol лучше Claude» пока преждевременен. Но снижение API-цены объективно и сразу меняет экономику длинных coding-agent сессий.</p><p>Практически Sol стоит тестировать как основной workhorse для Codex и программных агентов, когда Astra избыточна по цене. Luna особенно интересна для extraction, классификации, массового анализа документов и дешёвых subagents. Для сложнейших автономных задач Astra и новый Opus 5.5 пока остаются более логичными кандидатами.</p>",
+    "topics": ["LLM", "Coding Agents", "Инструменты"],
+    "relevance": "Высокая",
+    "links": [{"label":"OpenAI","url":"https://openai.com/index/introducing-gpt-6-sol-and-luna/"},{"label":"Prompt caching","url":"https://openai.com/index/better-prompt-caching-for-gpt-6/"}]
+  },
+  {
+    "id": "2026-09-22-claude-opus-55",
+    "date": "2026-09-22",
+    "title": "Claude Opus 5.5: новый сильнейший Claude для долгих coding-agent задач",
+    "summary": "Anthropic выпустила Claude Opus 5.5: $4/M input и $20/M output, на 20% дешевле Opus 5 по токенам и, по оценке Anthropic, примерно на 40% дешевле на типичной задаче за счёт меньшего расхода токенов. Модель заметно усилилась в agentic coding, computer use и knowledge work.",
+    "why": "Это один из немногих сегодняшних релизов, который реально меняет выбор модели для production coding agents. На Terminal-Bench 4.0 Anthropic сообщает 66.4% против 57.9% у GPT-6 Astra; на FrontierCode — 54.4% против 53.3%. При этом цена Opus впервые стала заметно ближе к рабочему, а не исключительно премиальному tier.",
+    "details": "<p>Opus 5.5 — первый представитель Claude 5.5. Цена снижена до $4/M input и $20/M output, cache reads стоят $0.20/M. Anthropic также заявляет более чем 30% прирост скорости генерации против Opus 5; отдельный fast mode до 2.5x быстрее стоит $8/$40.</p><p>Самые интересные результаты относятся к агентному кодингу: 66.4% на Terminal-Bench 4.0, 54.4% на FrontierCode v1.1 и 57.8% на CursorBench 4.0 при максимальных настройках. На Humanity's Last Exam с tools указано 67.7%, а на OSWorld 2.0 — 81.8% partial. Anthropic отдельно подчёркивает, что benchmark margins уже плохо отражают все различия реальной работы.</p><p>Есть и полезный внешний сигнал от ранних пользователей: GitHub, Spotify, Optiver, Clio и другие сообщают о меньшем числе шагов и токенов на длинных engineering workloads. Это всё ещё early-access testimonials, а не слепое независимое исследование, но они согласуются с заявленным направлением улучшений — long-horizon execution и self-verification.</p><p>Для ежедневной работы Opus 5.5 имеет смысл пробовать прежде всего на больших миграциях, code review, многочасовых агентных задачах и сложном research. Для обычных коротких запросов он всё ещё дорог относительно GPT-6 Sol/Luna и Flash-класса. На текущих данных это реальный конкурент GPT-6 Astra, а в некоторых coding-agent сценариях — вероятный лидер.</p>",
+    "topics": ["LLM", "Coding Agents", "Инструменты"],
+    "relevance": "Высокая",
+    "links": [{"label":"Anthropic","url":"https://www.anthropic.com/claude-opus-5-5"}]
+  },
+  {
+    "id": "2026-09-22-grok-47",
+    "date": "2026-09-22",
+    "title": "Grok 4.7: сильный дешёвый coding-конкурент, но не универсальный frontier-лидер",
+    "summary": "xAI выпустила Grok 4.7 с более крупной base model, более длинным RL на многочасовых задачах и усиленной self-verification. Цена осталась $2/M input и $6/M output; модель доступна в API, Cursor и Grok Build, где её можно попробовать бесплатно.",
+    "why": "Grok 4.7 важен не как новый абсолютный лидер, а как агрессивный price/performance вариант. Он силён на DeepSWE и CursorBench, но заметно уступает новому Opus 5.5 и GPT-6 Astra на длительной terminal-agent работе; независимые измерения также показывают, что высокий reasoning effort может резко увеличить реальную стоимость задачи.",
+    "details": "<p>xAI обучила Grok 4.7 на новой более крупной base model и продлила reinforcement learning на смеси задач, где решение занимает много часов. Компания также заявляет лучшее управление длинным контекстом и self-checking. Стандартный API остаётся на $2/M input и $6/M output; fast-вариант с удвоенной скоростью стоит вдвое дороже.</p><p>В таблице xAI Grok 4.7 получает 46.3% на CursorBench 4.0 и 71.0% на DeepSWE v1.1, что делает его вполне конкурентоспособным для coding. Но Terminal-Bench 4.0 у xAI — 37.6%, тогда как опубликованные сегодня результаты Opus 5.5 достигают 66.4%, а GPT-6 Astra — 57.9%. То есть long-horizon terminal autonomy остаётся слабее лидеров.</p><p>Независимое отслеживание Artificial Analysis, пересказанное OpenTools, показывает ещё одну оговорку: Grok 4.7 xhigh использует существенно больше output tokens и времени, чем 4.6, поэтому одинаковая цена за токен не означает одинаковую цену за выполненную задачу. Это важнее рекламного тезиса «та же цена» для автономных агентов.</p><p>Пробовать стоит в Cursor/Grok Build и для API-workloads, где важен хороший coding при умеренной цене. Как прямую замену Astra или Opus 5.5 для многочасовых unattended agents я бы пока не выбирал без собственного A/B теста на реальном репозитории.</p>",
+    "topics": ["LLM", "Coding Agents", "Инструменты"],
+    "relevance": "Высокая",
+    "links": [{"label":"xAI","url":"https://x.ai/news/grok-4-7"},{"label":"Independent cost analysis","url":"https://opentools.ai/news/grok-4-7-benchmarks-pricing-task-cost"}]
   }
 ]
