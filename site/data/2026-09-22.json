@@ -1,0 +1,42 @@
+[
+  {
+    "id": "2026-09-22-thaw-vla-world-model-distillation",
+    "date": "2026-09-22",
+    "title": "THAW-VLA: world-model grounding без world model в runtime",
+    "summary": "Работа Think Like a World Model, Act Like a VLA показывает, что компактную VLA-policy можно обучить совпадать с внутренними признаками frozen world model, а затем полностью убрать teacher из inference. 0.8B student достигает 97.9% на LIBERO, улучшает RoboCasa-GR1 с 48.2% до 50.5% и работает за 32 мс при 1.86 ГБ на RTX 5090.",
+    "why": "Это интересный компромисс между VLA и world models: физически более содержательные representations переносятся в быстрый reactive policy без дорогого rollout будущего во время управления. Для onboard robotics это существенно практичнее полноценных generative world-model loops.",
+    "details": "<p>Обычная VLA-policy учится отображать observation и language напрямую в action, поэтому её понимание динамики мира в значительной степени зависит от покрытия demonstrations. World model получает более сильный обучающий сигнал — необходимость предсказывать развитие сцены, — но генерация будущего слишком медленна для высокочастотного control loop.</p><p>Авторы разделяют эти две вещи. Frozen world model один раз прогоняется по training frames, его internal features кэшируются, а VLA student получает дополнительный feature-alignment loss. После обучения projector удаляется, teacher больше не нужен, поэтому runtime architecture и вычислительная стоимость остаются такими же, как у исходной VLA.</p><p>Для 0.8B student авторы сообщают 97.9% success на LIBERO и рост с 48.2% до 50.5% на RoboCasa-GR1 humanoid manipulation. Подход также перенесён на реальные single-arm и bimanual системы; эффект сохранялся при смене student scale, backbone, alignment layer и teacher.</p><p>Новизна здесь не в distillation как таковой, а в использовании внутренних world-model representations как физического prior без world-model inference. Пока улучшение на RoboCasa умеренное и работа в основном про manipulation, а не mobile navigation. Но принцип потенциально важен для embodied policies на роботах с ограниченным onboard compute: обучать representation с дорогим teacher офлайн, а исполнять компактную policy в реальном времени.</p>",
+    "topics": ["Робототехника", "VLA/World Models", "Гуманоиды", "Perception"],
+    "relevance": "Высокая",
+    "links": [
+      {"label": "arXiv", "url": "https://arxiv.org/abs/2609.24682"},
+      {"label": "Project", "url": "https://thaw-vla.trung-dt.com/"}
+    ]
+  },
+  {
+    "id": "2026-09-22-unitree-dex5-s",
+    "date": "2026-09-22",
+    "title": "Unitree Dex5-S: 22-DOF человеческая кисть с backdrivable joints",
+    "summary": "Unitree вывела Dex5-S — кисть примерно человеческого размера с 22 моторизованными степенями свободы, dual-encoder control, backdrivability и защитой редукторов от ударного момента. Стартовая цена заявлена около $6,500; Pro-версия добавляет tactile sensing.",
+    "why": "Для humanoid manipulation важна не только новая policy, но и доступность аппаратуры с достаточной артикуляцией и обратимостью приводов. Dex5-S делает 22-DOF hand коммерчески доступным в экосистеме массового производителя legged robots, хотя цена всё ещё высока и реальная долговечность/точность пока не подтверждены независимыми тестами.",
+    "details": "<p>Dex5-S развивает предыдущую Dex5: новая кисть имеет 22 моторизованные степени свободы и отдельный привод roll для мизинца. По опубликованным спецификациям масса руки около 620 г, максимальная нагрузка порядка 2 кг, непрерывная — около 1 кг; заявлены dual encoders и backdrivable joints.</p><p>Backdrivability особенно важна для teleoperation, imitation learning и безопасного физического взаимодействия: внешняя сила может механически сместить сустав вместо жёсткого сопротивления привода. Unitree также заявляет impact-torque protection для защиты редукторов. Pro-конфигурация добавляет tactile sensing, что потенциально полезно для closed-loop grasping.</p><p>Относительно рынка это не научный прорыв: dexterous hands с высокой артикуляцией существуют давно. Значимость в сочетании характеристик, человеческого форм-фактора и серийной доступности от производителя G1/H1/Go2. Это может снизить барьер для лабораторий, обучающих manipulation policies на humanoid hardware.</p><p>Главное ограничение сейчас — отсутствие достаточных независимых данных о repeatability, backlash, force control, tactile quality и ресурсе механизмов. Поэтому 22 DOF нельзя автоматически трактовать как качественную человеческую ловкость. Для квадрупедной автономной навигации связь косвенная; для mobile manipulation и гуманоидов — прямая.</p>",
+    "topics": ["Робототехника", "Гуманоиды", "Perception"],
+    "relevance": "Средняя",
+    "links": [
+      {"label": "Launch coverage / specifications", "url": "https://www.humanoidsdaily.com/news/unitree-dex5-s-robot-hand"}
+    ]
+  },
+  {
+    "id": "2026-09-22-ifr-humanoid-sales-baseline",
+    "date": "2026-09-22",
+    "title": "IFR впервые даёт реальный baseline рынка: около 7 тысяч humanoid robots в 2025",
+    "summary": "International Federation of Robotics впервые включила humanoid robots в свою статистику: в 2025 году глобально было продано около 7,000 единиц для industrial и professional service use. Это на порядки меньше зрелого рынка промышленных роботов, а значительная часть humanoids ушла в research и AI development, а не в производительный труд.",
+    "why": "Цифра полезна как противовес демонстрациям и прогнозам миллионов humanoids: отрасль уже коммерческая, но пока очень мала и в значительной степени находится на стадии pilots/data collection. Для оценки реальной зрелости embodied AI такой baseline важнее количества viral demos.",
+    "details": "<p>По данным IFR, в 2025 году было продано примерно 7 тысяч humanoid robots для промышленных и профессиональных сервисных сценариев. Для сравнения, зрелые категории исчисляются сотнями тысяч установок в год: humanoids пока составляют небольшую нишу.</p><p>Особенно важно, что многие из этих роботов покупались исследовательскими организациями и компаниями для AI development, а не как готовая замена человеку на производственной линии. Автопроизводители остаются ранними пользователями, но в основном в форме ограниченных пилотов.</p><p>Это не технологический релиз, зато важный measurement point. До сих пор рынок humanoids часто обсуждался через инвестиции, планы выпуска и демонстрации. Регулярная статистика IFR позволяет отделять поставленное железо от заявленных производственных мощностей и будущих заказов.</p><p>Для автономных роботов вывод практический: hardware supply быстро растёт, но bottleneck остаётся в надёжном software stack — perception, manipulation, task planning, safety и uptime. Именно эти метрики определят, превратятся ли нынешние research deployments в эксплуатационный рынок.</p>",
+    "topics": ["Робототехника", "Гуманоиды"],
+    "relevance": "Средняя",
+    "links": [
+      {"label": "Reuters", "url": "https://www.reuters.com/technology/humanoid-robot-sales-tally-hit-7000-globally-last-year-2026-09-21/"}
+    ]
+  }
+]
