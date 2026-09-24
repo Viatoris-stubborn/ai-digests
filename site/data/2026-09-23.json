@@ -8,10 +8,7 @@
     "details": "<p>RAIBO2 проектировался вокруг системной энергоэффективности. Команда уменьшила массу ног и потери в motor-driving electronics, подобрала приводы с меньшим током при требуемом моменте и использовала освобождённый mass budget для более крупной батареи. Locomotion policy обучалась в симуляции reinforcement learning с поощрением мягких контактов, уменьшения проскальзывания и тепловых потерь.</p><p>На спусках робот способен рекуперировать энергию. В марафоне он поддерживал среднюю скорость около 2.64 м/с, прошёл 42.2 км с 286 м перепада высоты и использовал 1,280 Wh. Nature сообщает total cost of transport 0.25 — ниже приводимого авторами человеческого значения 0.37 — и примерно трёхкратное увеличение дальности на заряд относительно предыдущих квадрупедов.</p><p>Важное ограничение: это не демонстрация автономной навигации. Во время марафона RAIBO2 фактически шёл вслепую и управлялся человеком; камера была установлена, но perception/navigation software маршрут не вёл. Добавление onboard perception и вычислений само потребует энергии.</p><p>Для автономных инспекционных квадрупедов результат особенно релевантен: он показывает, что endurance надо оптимизировать одновременно на уровнях механики, power electronics и control policy. Следующий практически важный вопрос — сколько от этого запаса хода останется после добавления LiDAR/камер, вычислителя, связи и автономной навигации.</p>",
     "topics": ["Робототехника", "Квадрупеды"],
     "relevance": "Высокая",
-    "links": [
-      {"label": "Nature", "url": "https://www.nature.com/articles/s41586-026-11102-5"},
-      {"label": "Scientific American", "url": "https://www.scientificamerican.com/article/watch-a-robot-dog-run-a-marathon-faster-than-the-average-human/"}
-    ]
+    "links": [{"label":"Nature","url":"https://www.nature.com/articles/s41586-026-11102-5"},{"label":"Scientific American","url":"https://www.scientificamerican.com/article/watch-a-robot-dog-run-a-marathon-faster-than-the-average-human/"}]
   },
   {
     "id": "2026-09-23-light-o1",
@@ -22,10 +19,7 @@
     "details": "<p>Light-O1 извлекает из обычного человеческого видео структурированные действия, кодирует их в unified humanoid action representation, дискретизирует в action tokens и смешивает с language и visual observations в autoregressive Transformer training. В крупнейшем эксперименте использовано около 120B multimodal tokens, соответствующих примерно 100,000 часам human action.</p><p>После такого pretraining независимые checkpoints адаптировались к Nymeria egocentric data, Unitree G1 teleoperation data и внутренним данным LightBot. В заявленных экспериментах увеличение pretraining budget даёт power-law снижение next-action-token loss и whole-body pose error. Компания также показывает real-world loco-manipulation: уборку мусора, открывание шкафа, wiping и перенос объектов на LightBot и G1.</p><p>Существенная оговорка: опубликованный transfer scaling result основан на held-out prediction metrics и open-loop whole-body pose evaluation, а не на кривой реального task-success при увеличении pretraining. Поэтому утверждать, что найден полноценный robotics scaling law уровня LLM, пока рано.</p><p>Практическая ценность для мобильных роботов — в data strategy: огромный human-video corpus может формировать общий prior до дорогого сбора данных на конкретном железе. Light-O1-Preview также выпущен с открытыми weights/code, что делает идею проверяемой вне компании.</p>",
     "topics": ["Робототехника", "Гуманоиды", "VLA/World Models", "Open-weight"],
     "relevance": "Высокая",
-    "links": [
-      {"label": "Light Origins technical post", "url": "https://www.lightorigins.cn/en/blog/light-o1"},
-      {"label": "GitHub", "url": "https://github.com/lightorigins/Light-O1"}
-    ]
+    "links": [{"label":"Light Origins technical post","url":"https://www.lightorigins.cn/en/blog/light-o1"},{"label":"GitHub","url":"https://github.com/lightorigins/Light-O1"}]
   },
   {
     "id": "2026-09-23-tango-humanoid-navigation",
@@ -36,8 +30,39 @@
     "details": "<p>TANGO рассматривает navigation как управление всей кинематической структурой. На вход поступают natural-language instruction, история egocentric RGB и proprioception; модель выдаёт 29 joint angles, после чего low-level whole-body tracker обеспечивает динамически исполнимое движение.</p><p>Training pipeline Plan-Edit-Track сначала строит глобальный путь, затем генерирует kinematic whole-body motion, редактирует его с учётом препятствий и использует RL tracking для получения физически реализуемой supervision. В результате policy обучается sidestep через узкие проёмы, squat под верхними препятствиями и изменять stride для препятствий у пола.</p><p>Наиболее важен zero-shot sim-to-real result на Unitree G1 без сбора реальных navigation trajectories. Это не означает, что модульный Nav2-подобный стек стал ненужным: learned whole-body policy хуже интерпретируема, а long-range mapping, localization, recovery и safety остаются отдельными задачами.</p><p>Для автономных мобильных роботов работа показывает возможную архитектуру разделения: глобальная топологическая/метрическая навигация может по-прежнему задавать цель и маршрут, а локальный planner/controller для сложного articulated body становится learned whole-body модулем вместо плоского footprint planner.</p>",
     "topics": ["Робототехника", "Гуманоиды", "SLAM/Навигация", "VLA/World Models", "Perception"],
     "relevance": "Высокая",
-    "links": [
-      {"label": "arXiv", "url": "https://arxiv.org/abs/2609.09158"}
-    ]
+    "links": [{"label":"arXiv","url":"https://arxiv.org/abs/2609.09158"}]
+  },
+  {
+    "id": "2026-09-23-google-antigravity-local-models",
+    "date": "2026-09-23",
+    "title": "Google Antigravity SDK получил локальных агентов: Gemma 4, LiteRT и OpenAI-compatible backends",
+    "summary": "Google добавил в Antigravity SDK полностью локальные agentic workflows. Первый оптимизированный путь использует Gemma 4 26B A4B через LiteRT; SDK также умеет работать с OpenAI-compatible локальными серверами вроде Ollama, LM Studio и vLLM. Google рекомендует более 24 ГБ VRAM или unified memory.",
+    "why": "Это заметный практический шаг для coding agents: orchestration, tools и workflow можно оставить теми же, а исполнение перенести с облачной frontier-модели на локальную модель ради приватности, офлайн-работы и отсутствия API-cost. Особенно интересна гибридная схема, где облачная модель только планирует, а исходный код обрабатывают локальные workers.",
+    "details": "<p>Antigravity SDK теперь поддерживает LiteRTAgentConfig для локального запуска Gemma 4 26B A4B. Агент может читать и изменять workspace, вызывать инструменты и выполнять coding workflow без отправки исходного кода в облако. Для разработчиков это важнее простого локального чата: локальная модель подключается к полноценному agent harness.</p><p>Google отдельно показывает hybrid Architect–Builder pattern: Gemini 3.8 Flash получает только имена файлов и описание задачи, формирует план, а несколько локальных Gemma-инстансов воспроизводят уязвимости, пишут патчи, критикуют их и запускают regression tests. В демонстрации 97.2% токенов исполнялись локально; это vendor demo, а не независимый benchmark, поэтому качество на больших production-репозиториях ещё нужно проверять.</p><p>SDK также поддерживает любой OpenAI-compatible server через LocalOpenAIAgentConfig — в частности Ollama, LM Studio и vLLM. Это делает новость шире одной Gemma: orchestration layer можно сохранить при смене локальной модели или inference backend.</p><p>Практически это стоит пробовать тем, кому нельзя отправлять код наружу, кто работает офлайн или хочет использовать дешёвых локальных subagents. Ограничение очевидно: Google рекомендует машину с более чем 24 ГБ VRAM/unified memory, а по абсолютному coding/reasoning качеству локальная Gemma 4 26B не заявлена как замена GPT-6 Astra или Claude Opus 5.5.</p>",
+    "topics": ["LLM", "Coding Agents", "Open-weight", "Инструменты"],
+    "relevance": "Высокая",
+    "links": [{"label":"Google Developers Blog","url":"https://developers.googleblog.com/introducing-support-for-local-ai-models-in-the-antigravity-sdk/"}]
+  },
+  {
+    "id": "2026-09-23-gemini-connected-apps",
+    "date": "2026-09-23",
+    "title": "Gemini расширяет Connected Apps: Linear, Airtable, Adobe, Webflow и другие сервисы прямо из чата",
+    "summary": "Google начал подключать к Gemini новую волну внешних приложений. Среди рабочих интеграций — Airtable, Linear, monday.com, PandaDoc, Wispr AI и Zoho; среди creative tools — Adobe, Picsart, Squarespace и Webflow. Приложения можно подключить в настройках и вызывать через @mention или естественный запрос.",
+    "why": "Для повседневной работы это важнее очередного небольшого benchmark gain: универсальный чат превращается в action layer поверх уже используемых SaaS. Особенно полезно для project management, документов и design/web workflows, где раньше приходилось вручную переносить контекст между вкладками.",
+    "details": "<p>Connected Apps позволяют Gemini не только обсуждать задачу, но и обращаться к подключённому сервису в контексте разговора. Google перечисляет Linear, Airtable, monday.com, PandaDoc, Wispr AI, Zoho, Adobe, Webflow, Squarespace и ряд consumer-сервисов; rollout начинается 23 сентября.</p><p>Это продолжает общий сдвиг от standalone chatbot к agentic workspace. Конкурентное преимущество здесь определяется уже не только качеством базовой модели, но и количеством надёжных action connectors, permission model и тем, насколько хорошо агент переносит контекст между системами.</p><p>Пока Google не публикует в этом анонсе независимые метрики успешности действий или подробную сравнительную оценку против ChatGPT/Claude integrations. Поэтому новость стоит воспринимать как расширение продуктовой поверхности, а не свидетельство превосходства модели.</p><p>Пробовать имеет смысл пользователям, чья работа уже живёт в Linear/Airtable/Adobe/Webflow: выигрыш может оказаться заметнее, чем переход между близкими frontier-моделями, если типичные операции удаётся выполнять без переключения приложений.</p>",
+    "topics": ["LLM", "Инструменты"],
+    "relevance": "Высокая",
+    "links": [{"label":"Google Blog","url":"https://blog.google/innovation-and-ai/products/gemini-app/new-connected-apps-gemini/"}]
+  },
+  {
+    "id": "2026-09-23-airbnb-gpt6-astra",
+    "date": "2026-09-23",
+    "title": "Airbnb расширяет GPT-6 Astra и Codex на инженерные команды: полезный сигнал реального enterprise deployment",
+    "summary": "Airbnb расширяет доступ инженерных и product-команд к GPT-6 Astra через OpenAI API и Amazon Bedrock. Компания уже использует внутреннего AI-ассистента, Codex и remote agents; Astra применяется для сложных багов, system design и non-coding стратегических документов.",
+    "why": "Это не новый model release, но хороший production-сигнал после вчерашней волны frontier-релизов: сильные coding models начинают оцениваться не только по benchmark, а по тому, как они встраиваются в внутренние agent systems и влияют на shipping throughput. При этом цифры Airbnb/OpenAI нельзя считать контролируемым независимым экспериментом.",
+    "details": "<p>По OpenAI, Airbnb расширяет доступ к frontier-моделям, включая GPT-6 Astra, через API и Bedrock. Внутренний стек Airbnb уже использует Codex и модели OpenAI для написания ПО и remote AI agents; Astra добавляется как более сильный уровень для трудных bugs, system design и brainstorming.</p><p>Airbnb CTO сообщает, что development teams выпускают примерно на 80% больше features, чем год назад, и называет frontier models одним из факторов. В отдельном внутреннем примере стратегический документ потребовал 3–4 итерации с Astra против более чем 20 с другими моделями. Эти цифры интересны как field evidence, но причинно приписывать весь прирост Astra нельзя: это customer story без контролируемой методологии.</p><p>Для практического выбора моделей вывод скорее архитектурный: крупные команды всё чаще используют routing/tiering, где дешёвые модели и agents выполняют массовую работу, а frontier model подключается к наиболее сложным задачам. Это поддерживает идею сравнивать не цену токена, а стоимость завершённой инженерной задачи.</p>",
+    "topics": ["LLM", "Coding Agents", "Инструменты"],
+    "relevance": "Средняя",
+    "links": [{"label":"OpenAI customer story","url":"https://openai.com/index/airbnb-gpt-6-astra/"}]
   }
 ]
