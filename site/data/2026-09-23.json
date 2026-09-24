@@ -1,0 +1,43 @@
+[
+  {
+    "id": "2026-09-23-raibo2-marathon",
+    "date": "2026-09-23",
+    "title": "RAIBO2: квадрупед прошёл марафон на одной батарее с cost of transport 0.25",
+    "summary": "KAIST опубликовал в Nature RAIBO2 — квадрупеда, который прошёл полный марафон за 4:19:52 на одной батарее. На трассе с 286 м набора высоты робот израсходовал 1,280 Wh при среднем total cost of transport 0.25; расчётный запас хода на полной батарее 2,016 Wh — ещё около 25 км сверх марафона.",
+    "why": "Для полевых квадрупедов это один из наиболее практичных результатов года: дальность ограничивает реальные инспекции не меньше, чем SLAM или проходимость. Новизна здесь не в отдельном RL-контроллере, а в совместной оптимизации массы ног, силовой электроники, приводов, рекуперации и energy-aware locomotion policy.",
+    "details": "<p>RAIBO2 проектировался вокруг системной энергоэффективности. Команда уменьшила массу ног и потери в motor-driving electronics, подобрала приводы с меньшим током при требуемом моменте и использовала освобождённый mass budget для более крупной батареи. Locomotion policy обучалась в симуляции reinforcement learning с поощрением мягких контактов, уменьшения проскальзывания и тепловых потерь.</p><p>На спусках робот способен рекуперировать энергию. В марафоне он поддерживал среднюю скорость около 2.64 м/с, прошёл 42.2 км с 286 м перепада высоты и использовал 1,280 Wh. Nature сообщает total cost of transport 0.25 — ниже приводимого авторами человеческого значения 0.37 — и примерно трёхкратное увеличение дальности на заряд относительно предыдущих квадрупедов.</p><p>Важное ограничение: это не демонстрация автономной навигации. Во время марафона RAIBO2 фактически шёл вслепую и управлялся человеком; камера была установлена, но perception/navigation software маршрут не вёл. Добавление onboard perception и вычислений само потребует энергии.</p><p>Для автономных инспекционных квадрупедов результат особенно релевантен: он показывает, что endurance надо оптимизировать одновременно на уровнях механики, power electronics и control policy. Следующий практически важный вопрос — сколько от этого запаса хода останется после добавления LiDAR/камер, вычислителя, связи и автономной навигации.</p>",
+    "topics": ["Робототехника", "Квадрупеды"],
+    "relevance": "Высокая",
+    "links": [
+      {"label": "Nature", "url": "https://www.nature.com/articles/s41586-026-11102-5"},
+      {"label": "Scientific American", "url": "https://www.scientificamerican.com/article/watch-a-robot-dog-run-a-marathon-faster-than-the-average-human/"}
+    ]
+  },
+  {
+    "id": "2026-09-23-light-o1",
+    "date": "2026-09-23",
+    "title": "Light-O1: масштабирование human-action pretraining начинает переноситься между embodiment",
+    "summary": "Light Origins представила Light-O1: whole-body foundation model, который сначала учится на структурированных 3D-действиях, восстановленных из интернет-видео людей, а затем адаптируется к конкретным роботам. На шести pretraining budgets от 3.75B до 120B multimodal tokens компания наблюдает power-law снижение prediction errors после адаптации к egocentric human data, Unitree G1 и собственному LightBot.",
+    "why": "Главный дефицит embodied AI — дорогие robot trajectories. Если масштабируемое human-video pretraining действительно даёт предсказуемый выигрыш после переноса на разные тела, это может стать аналогом web pretraining для робототехники. Но пока scaling law измеряется в основном open-loop prediction metrics, а не масштабированием real-world task success.",
+    "details": "<p>Light-O1 извлекает из обычного человеческого видео структурированные действия, кодирует их в unified humanoid action representation, дискретизирует в action tokens и смешивает с language и visual observations в autoregressive Transformer training. В крупнейшем эксперименте использовано около 120B multimodal tokens, соответствующих примерно 100,000 часам human action.</p><p>После такого pretraining независимые checkpoints адаптировались к Nymeria egocentric data, Unitree G1 teleoperation data и внутренним данным LightBot. В заявленных экспериментах увеличение pretraining budget даёт power-law снижение next-action-token loss и whole-body pose error. Компания также показывает real-world loco-manipulation: уборку мусора, открывание шкафа, wiping и перенос объектов на LightBot и G1.</p><p>Существенная оговорка: опубликованный transfer scaling result основан на held-out prediction metrics и open-loop whole-body pose evaluation, а не на кривой реального task-success при увеличении pretraining. Поэтому утверждать, что найден полноценный robotics scaling law уровня LLM, пока рано.</p><p>Практическая ценность для мобильных роботов — в data strategy: огромный human-video corpus может формировать общий prior до дорогого сбора данных на конкретном железе. Light-O1-Preview также выпущен с открытыми weights/code, что делает идею проверяемой вне компании.</p>",
+    "topics": ["Робототехника", "Гуманоиды", "VLA/World Models", "Open-weight"],
+    "relevance": "Высокая",
+    "links": [
+      {"label": "Light Origins technical post", "url": "https://www.lightorigins.cn/en/blog/light-o1"},
+      {"label": "GitHub", "url": "https://github.com/lightorigins/Light-O1"}
+    ]
+  },
+  {
+    "id": "2026-09-23-tango-humanoid-navigation",
+    "date": "2026-09-23",
+    "title": "TANGO: humanoid navigation перестаёт быть 2D-путём и становится whole-body VLA",
+    "summary": "TANGO напрямую предсказывает 29-DoF joint-space actions Unitree G1 из language instruction и egocentric RGB, чтобы робот мог не только обходить препятствия, но и приседать, поворачивать корпус и перестраивать положение конечностей в тесной 3D-среде. Обучение выполнено полностью на синтетических trajectories, а deployment на реальном G1 — zero-shot без real-world navigation training data.",
+    "why": "Для гуманоидов классическая схема global 2D path + footprint плохо описывает тело: руки, корпус и высота становятся частью collision geometry. TANGO интересен тем, что объединяет navigation intent и whole-body adaptation, а данные генерирует масштабируемым Plan-Edit-Track pipeline вместо ручной teleoperation.",
+    "details": "<p>TANGO рассматривает navigation как управление всей кинематической структурой. На вход поступают natural-language instruction, история egocentric RGB и proprioception; модель выдаёт 29 joint angles, после чего low-level whole-body tracker обеспечивает динамически исполнимое движение.</p><p>Training pipeline Plan-Edit-Track сначала строит глобальный путь, затем генерирует kinematic whole-body motion, редактирует его с учётом препятствий и использует RL tracking для получения физически реализуемой supervision. В результате policy обучается sidestep через узкие проёмы, squat под верхними препятствиями и изменять stride для препятствий у пола.</p><p>Наиболее важен zero-shot sim-to-real result на Unitree G1 без сбора реальных navigation trajectories. Это не означает, что модульный Nav2-подобный стек стал ненужным: learned whole-body policy хуже интерпретируема, а long-range mapping, localization, recovery и safety остаются отдельными задачами.</p><p>Для автономных мобильных роботов работа показывает возможную архитектуру разделения: глобальная топологическая/метрическая навигация может по-прежнему задавать цель и маршрут, а локальный planner/controller для сложного articulated body становится learned whole-body модулем вместо плоского footprint planner.</p>",
+    "topics": ["Робототехника", "Гуманоиды", "SLAM/Навигация", "VLA/World Models", "Perception"],
+    "relevance": "Высокая",
+    "links": [
+      {"label": "arXiv", "url": "https://arxiv.org/abs/2609.09158"}
+    ]
+  }
+]
