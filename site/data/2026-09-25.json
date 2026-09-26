@@ -1,0 +1,59 @@
+[
+  {
+    "id": "2026-09-25-perplexity-real-world-mistakes",
+    "date": "2026-09-25",
+    "title": "Perplexity учит Computer agent на реальных ошибках tool use",
+    "summary": "Perplexity описала post-training своего Computer agent на реальных пользовательских сессиях, включая ошибочные tool calls. Комбинация rejection-sampling fine-tuning и hint-guided self-distillation снизила долю зафиксированных tool-call failures между двумя обученными checkpoints с 2.24% до 1.77% в live A/B test — на 21.2% относительно.",
+    "why": "Для практических агентов это более полезный сигнал, чем очередной static benchmark: система учится именно на ошибках взаимодействия с инструментами в production. Но результат узкий — пользовательская неудовлетворённость статистически значимо не улучшилась, а второй checkpoint не сравнивали напрямую со stock GLM-5.2 online.",
+    "details": "<p>Perplexity использует реальные eligible-сессии Computer и выделяет конкретный ошибочный decision/tool call вместо того, чтобы помечать всю сессию как success/failure. Для ошибки строится корректирующая подсказка, использующая только информацию, доступную модели до ошибки.</p><p>Затем одна копия той же базовой модели GLM-5.2 получает hint, а другая — исходный контекст без него; self-distillation сдвигает поведение второй к исправленному варианту. На held-out error turns наличие hint повышало avoidance ошибки с 75.1% до 93.7%.</p><p>В позднем live A/B test примерно со 100 тыс. пользователей на вариант tool-call failures снизились с 2.24% до 1.77%, статистически значимо. Однако strong dissatisfaction изменилась лишь с 2.58% до 2.54% без статистической значимости. Поэтому это доказательство улучшения узкой operational reliability, а не общего качества агента.</p><p>Практический вывод для разработчиков agent systems: логи production failures можно превращать в адресный post-training dataset. Веса и training code Perplexity не опубликованы, поэтому воспроизвести именно их результат пока нельзя.</p>",
+    "topics": [
+      "LLM",
+      "Инструменты"
+    ],
+    "relevance": "Высокая",
+    "links": [
+      {
+        "label": "Perplexity Research",
+        "url": "https://www.perplexity.ai/hub/blog/learning-from-real-world-mistakes"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-25-anthropic-safeguard-billing",
+    "date": "2026-09-25",
+    "title": "Anthropic снова тарифицирует часть запросов, заблокированных safety classifier",
+    "summary": "Anthropic возобновляет биллинг запросов, которые pre-response safeguards блокируют в категориях biology, frontier LLM development и reasoning extraction. Для остальных pre-response блокировок прежнее правило без оплаты сохраняется.",
+    "why": "Это небольшое, но практическое изменение API-экономики: автоматические пайплайны в затронутых областях должны учитывать, что отказ модели теперь тоже может иметь стоимость. Anthropic объясняет изменение защитой от масштабных попыток обхода safeguards.",
+    "details": "<p>Изменение касается моделей Anthropic с соответствующим safety classifier и трёх категорий, где компания заявляет низкий false-positive rate: bio, frontier_llm и reasoning_extraction. Заблокированный до ответа запрос в этих категориях теперь тарифицируется по обычной ставке используемой модели.</p><p>Для обычного пользователя влияние минимально: Anthropic заявляет, что подавляющее большинство Claude/Claude Code/Cowork пользователей изменение не затронет. Для исследовательских и автоматизированных workloads вокруг model extraction или frontier-model development экономический эффект может быть заметнее.</p><p>Это не изменение качества Claude и не новый capability-релиз, но важная operational деталь для API budgeting и retry logic: отказ больше нельзя всегда считать бесплатным запросом.</p>",
+    "topics": [
+      "LLM",
+      "Инструменты"
+    ],
+    "relevance": "Средняя",
+    "links": [
+      {
+        "label": "Claude Platform docs",
+        "url": "https://platform.claude.com/docs/en/build-with-claude/refusals-and-fallback"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-25-uipath-autopilot-agent",
+    "date": "2026-09-25",
+    "title": "UiPath Autopilot Agent: coding agent для сборки и отладки enterprise agents",
+    "summary": "UiPath выпустила в Preview Autopilot Agent внутри Studio Web. Он умеет scaffold-ить агента с prompts/tools/memory, отлаживать выполнение, строить evaluation sets и evaluators, создавать test cases и задавать guardrails.",
+    "why": "Это показательный сдвиг AI tooling: coding agents начинают использоваться не только для написания приложений, но и как meta-tool для разработки, тестирования и governance других агентов.",
+    "details": "<p>Autopilot Agent работает непосредственно в Studio Web и использует те же UiPath skills и CLI tooling, что и coding agents компании. Отдельная локальная установка не нужна; агент подключается к project и tenant из браузера.</p><p>Особенно полезна связка scaffold → debug → evals → guardrails. В enterprise agent development именно evaluation и контроль поведения часто требуют больше ручной инфраструктуры, чем генерация prompt/tool definitions.</p><p>Это Preview и не конкурент Opus/Astra как foundation model: ценность находится на уровне agent-development environment и интеграции с UiPath automation stack. Пробовать имеет смысл прежде всего командам, уже использующим UiPath.</p>",
+    "topics": [
+      "Coding Agents",
+      "Инструменты"
+    ],
+    "relevance": "Средняя",
+    "links": [
+      {
+        "label": "UiPath release notes",
+        "url": "https://docs.uipath.com/agents/automation-cloud/latest/release-notes/september-2026"
+      }
+    ]
+  }
+]
