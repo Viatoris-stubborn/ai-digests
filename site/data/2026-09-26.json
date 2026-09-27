@@ -1,0 +1,46 @@
+[
+  {
+    "id": "2026-09-26-uipath-coding-agents",
+    "date": "2026-09-26",
+    "title": "UiPath for Coding Agents: Claude Code и Codex входят в enterprise automation pipeline",
+    "summary": "UiPath представила интеграционный слой для coding agents: Claude Code и OpenAI Codex можно подключать к корпоративным CI/CD, credential vaults, policy enforcement, audit trails и role-based access controls вместо использования агентов как изолированных developer tools.",
+    "why": "Значимость не в новой модели, а в переходе coding agents из персонального инструмента разработчика в управляемый production workflow. Для крупных команд это решает реальную проблему: как разрешить агенту писать и запускать код, не обходя существующие security и governance-контуры.",
+    "details": "<p>UiPath for Coding Agents связывает coding agents с существующей инфраструктурой автоматизации и software delivery. На старте заявлена поддержка Claude Code и OpenAI Codex, при этом orchestration и governance задуманы model-agnostic.</p><p>Практически это означает единый слой для credentials, policy enforcement, audit trails, RBAC, CI/CD и deployment. Агент перестаёт быть отдельным локальным инструментом, который приходится вручную встраивать в корпоративный процесс.</p><p>Это не конкурент OpenAI или Anthropic на уровне модели: UiPath строит слой над ними. Ценность выше всего для enterprise-команд с уже существующими UiPath workflow; одиночному разработчику такая инфраструктура, вероятно, избыточна.</p><p>Стоит следить за качеством интеграции и реальными ограничениями прав агента. Само направление важно: борьба постепенно идёт не только за лучшую coding model, но и за безопасный execution/governance layer вокруг неё.</p>",
+    "topics": [
+      "LLM",
+      "Coding Agents",
+      "Инструменты"
+    ],
+    "relevance": "Высокая",
+    "links": [
+      {
+        "label": "UiPath announcement coverage",
+        "url": "https://automationtoday.net/news/uipath-introduces-coding-agent-integration-layer-for-enterprise-automation-workflows/"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-26-agent-security-execution-boundary",
+    "date": "2026-09-26",
+    "title": "Agent security смещается от jailbreak к контролю действий и execution boundary",
+    "summary": "Свежие материалы по безопасности агентов подчёркивают системную проблему: риск возникает не только из-за поведения самой LLM, а на границе между данными, которые агент читает, и системами, которые он может изменять — shell, репозитории, API, облачная инфраструктура и внешние сервисы.",
+    "why": "Для практического использования coding и workflow agents это важнее очередного jailbreak-бенчмарка. Чем больше агенту дают инструментов и автономности, тем критичнее capability isolation, least privilege, approval gates и проверка действий до исполнения.",
+    "details": "<p>В production-agent системах модель часто получает доступ к файловой системе, shell, package managers, Git, API и cloud resources. Поэтому ошибка или prompt injection превращаются из плохого текста в действие с реальным side effect.</p><p>Текущий инженерный вывод — нужен отдельный control point перед execution: policy checks, scoped credentials, sandboxing, allowlists и human approval для высокорисковых операций. Это архитектурная защита, которая не зависит от того, насколько хорошо сама модель сопротивляется jailbreak.</p><p>Это особенно актуально после недавних публичных инцидентов с автономными агентами и роста обсуждения agent containment. Конкретные оценки масштаба некоторых инцидентов пока спорны, поэтому их не стоит использовать как надёжную метрику риска.</p><p>Для ежедневной разработки вывод практический: Claude Code, Codex и аналогичные агенты безопаснее рассматривать как потенциально привилегированные процессы, а не просто как чат с доступом к терминалу.</p>",
+    "topics": [
+      "LLM",
+      "Coding Agents",
+      "Инструменты"
+    ],
+    "relevance": "Высокая",
+    "links": [
+      {
+        "label": "VentureBeat",
+        "url": "https://venturebeat.com/security/ai-agents-are-exposing-a-security-gap-between-the-data-they-read-and-the-systems-they-can-change"
+      },
+      {
+        "label": "Anthropic threat intelligence",
+        "url": "https://www.anthropic.com/threat-intelligence-report-september-2026"
+      }
+    ]
+  }
+]
