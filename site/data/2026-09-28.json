@@ -1,0 +1,71 @@
+[
+  {
+    "id": "2026-09-28-uncertainty-foundation-robotics",
+    "date": "2026-09-28",
+    "title": "IROS: неопределённость возвращают в foundation-model robotics",
+    "summary": "На IROS 2026 отдельный workshop поставил вопрос о том, как оценивать и использовать неопределённость в системах, где perception, planning и control всё чаще опираются на VLM/VLA/world models.",
+    "why": "Классический robotics stack явно передаёт covariance от state estimation дальше по системе, а крупные pretrained-модели обычно не дают столь удобной вероятностной оценки. Для реального автономного робота это становится проблемой безопасности: важно не только получить решение модели, но и знать, когда ему нельзя доверять.",
+    "details": [
+      "27 сентября на IROS 2026 прошёл workshop Rethinking Uncertainty for Modern Robotics Paradigms. Его программа охватывает uncertainty quantification для foundation models, OOD detection, policy evaluation, failure detection/recovery и verification.",
+      "Техническая новизна здесь не в одном новом алгоритме, а в формулировке системной проблемы: VLM/VLA и world models начинают заменять компоненты, где раньше uncertainty имела явный статистический смысл, тогда как ensembling крупных моделей дорого, а их confidence часто плохо калиброван.",
+      "Для автономного квадрупеда практический вывод прямой: learned perception или semantic planner не должны просто выдавать цель/действие. Нужен слой confidence/OOD/failure detection и безопасный fallback на проверяемый navigation stack или остановку. Это особенно важно при плохом LiDAR/камерном наблюдении, незнакомой сцене и динамических препятствиях."
+    ],
+    "topics": [
+      "uncertainty",
+      "foundation models",
+      "VLA",
+      "safety",
+      "planning"
+    ],
+    "practical_value": "Высокая как архитектурное направление для безопасного добавления VLM/VLA в автономный navigation stack.",
+    "sources": [
+      "https://rethinking-uncertainty.github.io/"
+    ]
+  },
+  {
+    "id": "2026-09-28-world-models-spatial-intelligence",
+    "date": "2026-09-28",
+    "title": "WORLDS @ IROS: world models сближаются со SLAM и 3D spatial intelligence",
+    "summary": "Workshop WORLDS объединил world models, 3D scene understanding, SLAM-представления, VLA и long-horizon planning — полезный признак того, куда движется embodied AI после чисто языковых/визуальных моделей.",
+    "why": "Для мобильных роботов world model имеет смысл только если он сохраняет геометрию, пространственные отношения и последствия действий достаточно надёжно для навигации. Сближение learned world models со spatial mapping выглядит практичнее, чем попытка заменить SLAM одной VLM.",
+    "details": [
+      "WORLDS: World Models and Spatial Intelligence for Physical AI прошёл 27 сентября на IROS 2026. В scope одновременно включены world models для navigation/manipulation, 3D scene understanding, SLAM-based spatial representations, predictive modeling, VLA и long-horizon task planning.",
+      "Это заметный сдвиг относительно раннего энтузиазма вокруг end-to-end embodied models: ключевой вопрос теперь не только в semantic reasoning, а в устойчивом внутреннем представлении физического пространства и прогнозе изменений среды.",
+      "Для квадрупеда наиболее реалистична гибридная схема: LiDAR-inertial localization и метрическая карта остаются источником геометрической истины; learned spatial/world model добавляет семантику, прогноз динамики и high-level reasoning. Такой слой может выбирать область обследования или предсказывать поведение объектов, не беря на себя centimetre-level collision avoidance."
+    ],
+    "topics": [
+      "world models",
+      "SLAM",
+      "spatial intelligence",
+      "VLA",
+      "navigation"
+    ],
+    "practical_value": "Высокая как направление гибридной архитектуры SLAM + learned spatial/world model.",
+    "sources": [
+      "https://worlds-iros2026.github.io/"
+    ]
+  },
+  {
+    "id": "2026-09-28-proprioception-beyond-exteroception",
+    "date": "2026-09-28",
+    "title": "Beyond Exteroception: proprioception как основной канал локализации и диагностики",
+    "summary": "IROS-workshop по interoception/proprioception рассматривает IMU, joint encoders и force/torque sensing не как вспомогательные сигналы, а как самостоятельный источник perceptual intelligence для legged robots.",
+    "why": "Для квадрупеда это особенно существенно в туннелях, пыли, темноте и геометрически вырожденных участках, где LiDAR/camera localization деградирует. Состояние ног и инерциальные сигналы могут одновременно поддерживать odometry и обнаруживать физические аномалии.",
+    "details": [
+      "Workshop Beyond Exteroception связывает learning-based inertial odometry, state estimation, legged locomotion, humanoid robotics и proprioceptive sensing. В центре — IMU, энкодеры суставов и force/torque sensing при деградации внешних сенсоров.",
+      "Сам принцип не новый: legged state estimation давно использует IMU и кинематические constraints. Новизна направления — в попытке обучать более богатые внутренние representations по proprioception и использовать их не только для low-level control, но и для perception/state estimation.",
+      "Для шахтного квадрупеда это практически близкая тема. При слабой наблюдаемости LiDAR можно использовать foot contacts, joint states и IMU для ограничения движения базы; отдельно residuals между ожидаемым и наблюдаемым состоянием могут сигнализировать о проскальзывании, ударе, провале ноги или деградации привода. Это не заменяет LiDAR-inertial localization, но повышает robustness."
+    ],
+    "topics": [
+      "proprioception",
+      "IMU",
+      "state estimation",
+      "legged robots",
+      "GPS-denied"
+    ],
+    "practical_value": "Очень высокая для квадрупеда в GPS-denied и perceptually degraded среде.",
+    "sources": [
+      "https://superodometry.com/interoception/"
+    ]
+  }
+]
