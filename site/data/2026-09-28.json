@@ -67,5 +67,61 @@
     "sources": [
       "https://superodometry.com/interoception/"
     ]
+  },
+  {
+    "id": "2026-09-28-claude-sonnet-55",
+    "date": "2026-09-28",
+    "title": "Claude Sonnet 5.5: agentic coding уровня Opus за половину цены",
+    "summary": "Anthropic выпустила Sonnet 5.5 по $2/M input и $10/M output. Модель работает более чем на 30% быстрее Sonnet 5; Anthropic сообщает 70.6% на Terminal-Bench 4.0, выше 66.4% у Opus 5.5.",
+    "why": "Это редкий случай, когда mid-tier модель по важному agentic-coding тесту обходит флагман при вдвое меньшей цене за токен. Для Claude Code и повседневной разработки Sonnet 5.5 становится первым кандидатом вместо автоматического выбора Opus.",
+    "details": [
+      "Sonnet 5.5 сохраняет ценовой уровень Sonnet 5 — $2 за миллион входных и $10 за миллион выходных токенов — и 1M context window. Модель уже доступна в Claude и GitHub Copilot.",
+      "По данным Anthropic, Terminal-Bench 4.0 вырос до 70.6%, а скорость генерации более чем на 30% выше Sonnet 5. Это особенно релевантно длительным coding-agent сессиям, где важны не только benchmark points, но latency и стоимость всей решённой задачи.",
+      "Оговорка существенная: launch-day цифры в основном vendor-selected. Первые независимые измерения указывают, что Sonnet 5.5 может расходовать много reasoning tokens, поэтому половина цены за токен не гарантирует половину стоимости задачи.",
+      "Практически модель стоит попробовать как default в Claude Code/Copilot для хорошо определённых задач, оставляя Opus 5.5 для наиболее неоднозначных архитектурных и long-horizon задач."
+    ],
+    "topics": [
+      "LLM",
+      "Coding Agents"
+    ],
+    "relevance": "Очень высокая",
+    "links": [
+      {
+        "label": "Anthropic",
+        "url": "https://www.anthropic.com/"
+      },
+      {
+        "label": "GitHub Copilot",
+        "url": "https://github.blog/changelog/2026-09-28-claude-sonnet-5-5-in-github-copilot/"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-28-nvidia-open-agent-safety",
+    "date": "2026-09-28",
+    "title": "NVIDIA Open Agent Safety Platform: sandbox и независимый kill switch для автономных агентов",
+    "summary": "NVIDIA представила Open Agent Safety Platform. OpenShell — Apache-2.0 runtime с kernel-level isolation и политиками доступа к файлам, сети, tools и credentials; Sentry переносит независимый мониторинг и enforcement на BlueField-4 DPU.",
+    "why": "Это правильный архитектурный ответ на рост автономности coding/research agents: security boundary находится вне модели и agent harness. Даже если модель ошиблась или попыталась выйти за scope, её полномочия ограничиваются отдельным runtime/hardware слоем.",
+    "details": [
+      "OpenShell запускает агентов в sandbox и проверяет доступ к filesystem, сети, процессам, tools и credentials против заранее заданной политики. Проект open source под Apache 2.0 и может работать не только на NVIDIA, но также расширяться на Arm/Intel платформы.",
+      "Дополнительный Sentry работает вне host-системы на BlueField-4 и способен независимо наблюдать agent activity и остановить выполнение при нарушении политики. NVIDIA подчёркивает, что агент не должен иметь возможность отключить собственный watchdog.",
+      "Для обычного разработчика наиболее интересен именно OpenShell, а не специализированное BlueField-железо. Coding agent с shell/network access разумно рассматривать как потенциально недоверенный процесс и выдавать ему минимальные полномочия.",
+      "Это не конкурент OpenAI/Anthropic как модель. Это инфраструктурный слой, который становится важнее по мере появления многочасовых автономных агентов и может использоваться с открытыми и закрытыми моделями."
+    ],
+    "topics": [
+      "Coding Agents",
+      "Инструменты"
+    ],
+    "relevance": "Высокая",
+    "links": [
+      {
+        "label": "NVIDIA Newsroom",
+        "url": "https://nvidianews.nvidia.com/news/open-agent-safety-platform"
+      },
+      {
+        "label": "NVIDIA Technical Blog",
+        "url": "https://developer.nvidia.com/blog/nvidia-open-agent-safety-platform-a-reference-for-continuous-in-silicon-agent-monitoring/"
+      }
+    ]
   }
 ]
