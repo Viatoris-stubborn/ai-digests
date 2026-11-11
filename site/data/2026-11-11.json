@@ -1,0 +1,84 @@
+[
+  {
+    "id": "2026-11-11-gemini-4-carbon-public",
+    "date": "2026-11-11",
+    "title": "Gemini 4 Carbon вышла в публичный API: сильный reasoning и агентный кодинг",
+    "summary": "10 ноября Google открыла Gemini 4 Carbon платным разработчикам и организациям через Gemini API и AI Studio; модель также появилась в Copilot. До 30 ноября API стоит $2/$10 за миллион входных/выходных токенов, затем $4/$20.",
+    "why": "Главная новая доступная альтернатива Claude Fable 5.2 для сложных задач: у Carbon 60 баллов Artificial Analysis v5 против 65 у Fable max, но цена токенов ниже. Стоит проверить на собственных агентных сценариях.",
+    "details": [
+      "10 ноября 2026 Google расширила доступ к Gemini 4 Carbon, ранее ограниченной отдельными исследователями кибербезопасности. Теперь модель доступна в платном Gemini API/AI Studio и Gemini for business, а подписчикам Google AI Ultra — в приложении Gemini, поиске и Antigravity.",
+      "Модель предназначена для долгих инженерных, научных и агентных задач. Google показала предварительную функцию /swarm в Antigravity: один запрос распределяется между несколькими агентами с изолированными рабочими областями и проверками. Это preview функции продукта, а не самостоятельная способность API без оркестратора.",
+      "Тариф API до 30 ноября включительно — $2 за миллион входных и $10 за миллион выходных токенов; с 1 декабря — $4/$20. Бесплатный API-доступ к Carbon не заявлен. Контекст — до 1 млн токенов; веса не опубликованы. Доступ в Copilot распространяется постепенно и ограничен подходящими платными планами.",
+      "Независимый Artificial Analysis показывает 60 баллов Intelligence Index v5 в режиме high против 65 у Claude Fable 5.2 max. Carbon сильнее в отдельных проверках Terminal-Bench 4.0 и AutomationBench-AA, Fable — в FrontierCode и суммарном индексе. Это прямой конкурент для сложного кодинга; проверять стоимость завершённой задачи и качество на собственных репозиториях."
+    ],
+    "topics": [
+      "Google",
+      "Gemini",
+      "coding",
+      "reasoning",
+      "agents",
+      "API",
+      "pricing",
+      "Copilot"
+    ],
+    "practical_value": "Очень высокая: платный API уже доступен; особенно выгодно тестировать до повышения цены 1 декабря.",
+    "sources": [
+      "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-carbon-now-available/",
+      "https://github.blog/changelog/2026-11-09-gemini-4-carbon-in-github-copilot/",
+      "https://artificialanalysis.ai/models/releases/comparisons/claude-fable-5-2-vs-gemini-4-carbon"
+    ]
+  },
+  {
+    "id": "2026-11-11-claude-office-tools",
+    "date": "2026-11-11",
+    "title": "Claude Meetings, Sheets, Whiteboards и Data: Anthropic расширяет рабочие инструменты",
+    "summary": "10 ноября Anthropic представила набор офисных AI-функций: Meetings участвует в Google Meet, Sheets помогает редактировать таблицы, Whiteboards структурирует идеи, Claude Data стал доступен платным пользователям.",
+    "why": "Claude выходит за пределы чата и IDE в совместную работу с документами и встречами. Стоит тестировать прежде всего командам с частыми совещаниями и аналитикой, учитывая beta-статус и доступ к корпоративным данным.",
+    "details": [
+      "10 ноября 2026 Anthropic показала Claude Meetings, Claude Sheets и Claude Whiteboards. Meetings подключается к Google Meet как видимый участник и может отвечать в чате, фиксировать решения, формировать планы и сроки прямо во время разговора.",
+      "Sheets предназначен для совместной работы с электронными таблицами; Whiteboards помогает превращать обсуждения в структурированные схемы и планы. Claude Data, ранее известный как Dashboards, вышел в общую доступность для платных пользователей. Также анонсированы интерактивные интеграции с партнёрскими приложениями.",
+      "Все три новых инструмента находятся в beta. Meetings сначала доступен Team и Enterprise, Sheets и Whiteboards — платным подписчикам. Для организаций важны политика доступа к встречам, конфиденциальность и проверка фактической точности выводов; независимых сравнений с Microsoft 365 Copilot и Gemini Workspace пока мало.",
+      "Практический смысл — поручать AI действия в ходе встречи, а не только получать протокол после неё. Это конкуренция с офисными ассистентами OpenAI, Google и Microsoft на уровне продукта, но не доказательство превосходства базовой LLM. Имеет смысл тестировать на не敏感ных рабочих встречах и сверять созданные задачи с оригинальным обсуждением."
+    ],
+    "topics": [
+      "Anthropic",
+      "Claude",
+      "productivity",
+      "meetings",
+      "spreadsheets",
+      "documents",
+      "agents"
+    ],
+    "practical_value": "Высокая для команд и аналитиков; ограниченная для индивидуальных пользователей без платного плана.",
+    "sources": [
+      "https://www.reuters.com/technology/anthropic-brings-claude-google-meet-tackle-tasks-live-2026-11-10/",
+      "https://www.theverge.com/ai-artificial-intelligence/1030709/anthropic-has-its-own-ai-powered-office-suite-now"
+    ]
+  },
+  {
+    "id": "2026-11-11-independent-fable-carbon-comparison",
+    "date": "2026-11-11",
+    "title": "Независимое сравнение Fable 5.2 и Gemini 4 Carbon: лидер зависит от задачи и effort",
+    "summary": "Artificial Analysis опубликовала прямое сравнение режимов reasoning: Claude Fable 5.2 max набрала 65 баллов, Gemini 4 Carbon high — 60. Но Carbon лучше в Terminal-Bench 4.0 и AutomationBench-AA, а Fable — в FrontierCode 2.0.",
+    "why": "Вместо маркетингового «лучшая модель» доступны независимые результаты и стоимость задач по режимам. Для coding agents важно выбирать модель и effort под конкретный класс задач.",
+    "details": [
+      "В сравнении Artificial Analysis от 10 ноября режим Claude Fable 5.2 max получил 65 баллов Intelligence Index v5, Gemini 4 Carbon high — 60. Fable high и xhigh набрали по 62, Carbon medium — 58. Результаты относятся к конкретным режимам вычислительных усилий.",
+      "На Terminal-Bench 4.0 Carbon high показала 65,2% против 59,6% у Fable max; на AutomationBench-AA — 77,8% против 76,4%. Напротив, FrontierCode 2.0 дал Fable high 49,1% против 40,6% у Carbon high. Разные бенчмарки измеряют разные свойства агентов.",
+      "Стоимость тестовой задачи у Fable max составляет $26,54, у Carbon high — $7,76 по таблице Artificial Analysis. При этом у Fable low стоимость $3,10, но индекс лишь 54. Эти цифры не следует путать с API-ценой миллиона токенов или переносить на любую собственную задачу.",
+      "Для сложного рефакторинга и научного reasoning разумно тестировать Fable high/max; для терминальных и автоматизационных задач — Carbon high. Нужен собственный небольшой набор задач с измерением успешности, времени и полного расхода токенов."
+    ],
+    "topics": [
+      "benchmarks",
+      "Anthropic",
+      "Google",
+      "reasoning",
+      "coding",
+      "pricing"
+    ],
+    "practical_value": "Очень высокая для выбора моделей и маршрутизации агентных задач.",
+    "sources": [
+      "https://artificialanalysis.ai/models/releases/comparisons/claude-fable-5-2-vs-gemini-4-carbon",
+      "https://artificialanalysis.ai/models/comparisons/claude-fable-5-2-vs-gemini-4-carbon"
+    ]
+  }
+]
