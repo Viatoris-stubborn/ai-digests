@@ -1,0 +1,58 @@
+[
+  {
+    "id": "2026-11-14-google-gemini-4-hydrogen",
+    "date": "2026-11-14",
+    "title": "Gemini 4 Hydrogen: быстрый агентный Gemini 4 с API и бесплатным доступом через Gemini",
+    "summary": "Google 12 ноября выпустила Gemini 4 Hydrogen для повседневного кодинга, tool calling и анализа мультимодальных документов; 13 ноября модель появилась в GitHub Copilot. API стоит $1.50/$7.50 за миллион входных/выходных токенов.",
+    "why": "Новая модель интересна как исполнитель быстрых агентных шагов и потенциальная замена Gemini 3.8 Flash. Google приводит 51 балл Artificial Analysis в high и 54 в xhigh, но практические преимущества требуют проверки на одинаковых задачах.",
+    "details": [
+      "12 ноября Google представила Gemini 4 Hydrogen, более быстрый вариант семейства Gemini 4 для программирования, работы с инструментами, поиска и документов. 13 ноября GitHub объявил о доступности Hydrogen в Copilot Pro, Pro+, Max, Business и Enterprise; развёртывание поэтапное.",
+      "Контекстное окно составляет около миллиона токенов; доступны уровни reasoning low, medium, high и xhigh. Google Antigravity Orchestrator может сочетать более мощную Carbon с Hydrogen как исполнителем и проверяющим. Google сообщает о снижении затрат квоты на 24% и ускорении на 19% в собственном тесте Orchestrator на Terminal-Bench 4.0.",
+      "Цена API — $1.50 за миллион входных и $7.50 за миллион выходных токенов, без повышения для длинного контекста. Модель доступна в Gemini API, AI Studio, приложении Gemini и Search; бесплатные пользователи Gemini получают её через автоматический выбор модели. Веса не опубликованы. Числа Google по скорости, Terminal-Bench и качеству необходимо отличать от независимой проверки в конкретном агентном окружении.",
+      "Для инженерных команд полезно протестировать Hydrogen на поиске ошибок в репозитории, обработке логов, чтении документации и многократных вызовах инструментов, сравнив с Claude Sonnet, GPT-6.1 Sol и более дешёвыми моделями. Для сложной архитектуры и длительного reasoning Carbon и Fable остаются кандидатами более высокого класса."
+    ],
+    "topics": [
+      "Google",
+      "Gemini",
+      "coding",
+      "agents",
+      "reasoning",
+      "API",
+      "pricing",
+      "free tier",
+      "multimodal"
+    ],
+    "practical_value": "Высокая: доступный кандидат для ежедневного кодинга и многократных агентных вызовов; стоит провести A/B-тест.",
+    "sources": [
+      "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-hydrogen/",
+      "https://blog.google/innovation-and-ai/technology/developers-tools/build-with-gemini-4-hydrogen/",
+      "https://github.blog/changelog/2026-11-13-gemini-4-hydrogen-in-github-copilot/"
+    ]
+  },
+  {
+    "id": "2026-11-14-github-copilot-december-model-retirements",
+    "date": "2026-11-14",
+    "title": "GitHub Copilot отключит шесть моделей 14 декабря: подготовка миграции",
+    "summary": "GitHub 13 ноября предупредил о прекращении поддержки Claude Fable 5, Claude Haiku 4.5, Gemini 3.8 Flash, Gemini 4 Argon, Grok 4.6 и Kimi K3 в Copilot с 14 декабря.",
+    "why": "Закреплённые модели в IDE, CLI и агентных workflow перестанут работать через Copilot. Переход стоит проверить заранее, поскольку новая модель может изменить стоимость и поведение агента.",
+    "details": [
+      "13 ноября GitHub объявил, что 14 декабря 2026 года удалит шесть моделей из Copilot Chat, inline edits, agent mode и code completions: Claude Fable 5, Haiku 4.5, Gemini 3.8 Flash, Gemini 4 Argon, Grok 4.6 и Kimi K3.",
+      "Рекомендованные замены: Fable 5.2, Haiku 5.5, Gemini 4 Hydrogen, Gemini 4 Carbon и Grok 4.7 соответственно; замена Kimi K3 пока не названа. Исключение: Haiku 4.5 сохранится для индивидуальных подписчиков Copilot с годовой оплатой.",
+      "В организациях с политикой автоматического включения новых моделей альтернативы могут появиться сами. Если администратор запретил автоматическое включение, понадобится разрешить соответствующую модель. Объявление относится к GitHub Copilot, а не автоматически ко всем API указанных производителей.",
+      "Практическое действие — проверить закреплённые model IDs, политики организации и важные coding-agent workflows до 14 декабря. Выполнить небольшие регрессионные прогоны на новых моделях, оценивая успешность тестов, расход и качество правок."
+    ],
+    "topics": [
+      "GitHub",
+      "Copilot",
+      "coding",
+      "IDE",
+      "CLI",
+      "availability",
+      "migration"
+    ],
+    "practical_value": "Высокая для пользователей Copilot с закреплёнными моделями; проверить миграцию до 14 декабря.",
+    "sources": [
+      "https://github.blog/changelog/2026-11-13-upcoming-deprecation-of-selected-github-copilot-models-in-december/"
+    ]
+  }
+]
